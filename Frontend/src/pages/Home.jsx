@@ -6,37 +6,8 @@ import { useTranslation } from "../context/LanguageContext";
 export default function Home() {
   const navigate = useNavigate();
   const [featuredCars, setFeaturedCars] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
-
-  const fallbackCategories = [
-    { 
-      name: "Sedan (Berline)", 
-      filter: "luxury-cars",
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD9PQNCOcgp8fro9bA65EIODkCdj7WUZ9nQ7KIYtlO0LS2cCY4N0tTejUsInHhhu30Yq4DRB9nfZ8uKYa3p87XSH_MISvJHcCVmgYD7PT9DXzvwDLIDGj-zVf3ntXlZ3Byt1SdCPWOhgb6wigTbAxChWuT64lFkyZCVvud3_kay1WvbmdlTYWyN8YIH1ShfjJlE5WZNkGC3xzPuxshOKmtntOW6mL-Zl1WEaUsj8SyeCp9A6eZ5awUqOw" 
-    },
-    { 
-      name: "SUV / 4x4", 
-      filter: "suvs",
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD6QiewIpbON6YpgNX5Y-a2vAl4PP_E1dPTCj3hVXIK6qSJ5ese7XV-MnsDStk8aN5E9F5U50Mc1kq14JfATr3iQBZXEAuSVOy0tQJQ_9vA-97mQWgKJBzPxctiZels7QnIYSU925S-MIoFSyjJfecFOKwI2VxyRke_nOCJ2JkJyIpKOpE87hYE7moYLP7fbwJnlhAiRv3vZ2D7im6EwiiSNNs5V7c5hRZ6mkGZrxBbUyjTYUzoJJkRpQ" 
-    },
-    { 
-      name: "Sports / Coupe", 
-      filter: "sports-cars",
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBGxs1gQIaUVVrSsstEJKX1IMSErlTv0rX8xbdo2BRYh_-tqH9Ehwq2nDPETSZoaegaXamLi7l8uj5QhemfejXl_hlrd-bOQFGOHpCXWKxoVxyRMlKyqLYvIil_qNrmNY-w80m3vRCmH-h71QwSaYV_8LBxMFJ62CU60Owy2TexoYbJwo6RB5kFoNPL9qnRemka50bzEOPoHKYlD4n6YUuPXLVuNFlUcENFX5gqX2QWH-TODVqht9yonA" 
-    },
-    { 
-      name: "Hatchback (Citadine)", 
-      filter: "hatchbacks",
-      image: "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=600&auto=format&fit=crop" 
-    },
-    { 
-      name: "Electric / Hybrid", 
-      filter: "electric-hybrid",
-      image: "https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=600&auto=format&fit=crop" 
-    }
-  ];
 
   useEffect(() => {
     const fetchCars = async () => {
@@ -47,43 +18,13 @@ export default function Home() {
         setFeaturedCars(docs.slice(0, 3));
       } catch (err) {
         console.error("Error fetching featured cars:", err.message);
-      }
-    };
-
-    const fetchCategories = async () => {
-      try {
-        const response = await fetch(`${API_BASE_URL}/categories`);
-        const data = await response.json();
-        const docs = data.data?.docs || data.data?.data || data.data || [];
-        if (docs.length > 0) {
-          const formatted = docs.map(cat => ({
-            name: cat.name,
-            filter: cat.slug || cat._id,
-            image: getMediaUrl(cat.image, 'category')
-          }));
-          setCategories(formatted);
-        } else {
-          setCategories(fallbackCategories);
-        }
-      } catch (err) {
-        console.error("Error fetching categories:", err.message);
-        setCategories(fallbackCategories);
       } finally {
         setLoading(false);
       }
     };
 
     fetchCars();
-    fetchCategories();
   }, []);
-
-  const handleCategoryClick = (filter) => {
-    if (filter === "new" || filter === "used") {
-      navigate(`/inventory?badge=${filter === "new" ? "New+Arrival" : "Certified+Pre-Owned"}`);
-    } else {
-      navigate(`/inventory?category=${filter}`);
-    }
-  };
 
   return (
     <div className="bg-[#0F0F0F] text-[#e2e2e2] overflow-x-hidden min-h-screen">
@@ -144,36 +85,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Categories (Curated Collections) */}
-      <section className="py-24 max-w-7xl mx-auto px-6">
-        <div className="mb-12">
-          <h2 className="font-headline-lg text-3xl uppercase font-bold text-white mb-2 tracking-wide">
-            {t("curatedCollections")}
-          </h2>
-          <div className="h-1 w-24 bg-primary-container"></div>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-          {categories.map((cat, i) => (
-            <div 
-              key={i} 
-              onClick={() => handleCategoryClick(cat.filter)}
-              className="group relative h-[320px] overflow-hidden matte-card cursor-pointer rounded-sm"
-            >
-              <div 
-                className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700 opacity-85" 
-                style={{ backgroundImage: `url('${cat.image}')` }}
-              ></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F] via-[#0F0F0F]/30 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 p-8">
-                <h3 className="font-headline-md text-xl font-bold text-white uppercase">{cat.name}</h3>
-                <p className="text-[#ffb3af] font-label-bold text-xs uppercase tracking-wider mt-2 group-hover:translate-x-2 transition-transform duration-300">
-                  {t("exploreCollection")}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+
 
       {/* Featured Vehicles Preview */}
       <section className="py-24 bg-[#1a1c1c]/50">
