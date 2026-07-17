@@ -1,5 +1,29 @@
 @import "tailwindcss";
 
+:root {
+  --bg-main: #f3f4f6;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f9fafb;
+  --text-main: #111827;
+  --text-muted: #4b5563;
+  --border-color: rgba(11, 15, 20, 0.08);
+  --bg-header: #ffffff;
+  --text-header: #111827;
+  --accent-glow: rgba(11, 15, 20, 0.03);
+}
+
+.dark {
+  --bg-main: #0F0F0F;
+  --bg-card: #1E1E1E;
+  --bg-card-hover: #262626;
+  --text-main: #e2e2e2;
+  --text-muted: #bab8b7;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --bg-header: #121414;
+  --text-header: #e2e2e2;
+  --accent-glow: rgba(255, 255, 255, 0.05);
+}
+
 @theme {
   --color-primary: #ffb3af;
   --color-primary-container: #d90429;
@@ -28,6 +52,14 @@
   --color-outline: #ae8885;
   --color-outline-variant: #5d3f3d;
 
+  --color-bg-main: var(--bg-main);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-hover: var(--bg-card-hover);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-border-color: var(--border-color);
+  --color-bg-header: var(--bg-header);
+
   --radius-sm: 0.125rem;
   --radius-md: 0.25rem;
   --radius-lg: 0.5rem;
@@ -51,11 +83,12 @@
 }
 
 body {
-  background-color: #0F0F0F;
-  color: #e2e2e2;
+  background-color: var(--bg-main);
+  color: var(--text-main);
   font-family: var(--font-body-md);
   -webkit-font-smoothing: antialiased;
   margin: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .luxury-overlay {
@@ -63,8 +96,9 @@ body {
 }
 
 .matte-card {
-  background-color: #1E1E1E;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .material-symbols-outlined {

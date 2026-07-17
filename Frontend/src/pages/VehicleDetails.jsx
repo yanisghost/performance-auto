@@ -239,7 +239,7 @@ export default function VehicleDetails() {
 
   if (loading) {
     return (
-      <div className="bg-[#0F0F0F] text-white min-h-screen flex flex-col items-center justify-center py-20 px-6">
+      <div className="bg-bg-main text-text-main min-h-screen flex flex-col items-center justify-center py-20 px-6">
         <div className="w-10 h-10 border-4 border-[#ffb3af] border-t-transparent rounded-full animate-spin mb-4"></div>
         <h2 className="text-xl uppercase font-bold tracking-wider">Loading Specifications...</h2>
       </div>
@@ -248,10 +248,10 @@ export default function VehicleDetails() {
 
   if (!car) {
     return (
-      <div className="bg-[#0F0F0F] text-white min-h-screen flex flex-col items-center justify-center py-20 px-6">
+      <div className="bg-bg-main text-text-main min-h-screen flex flex-col items-center justify-center py-20 px-6">
         <span className="material-symbols-outlined text-5xl text-[#ffb3af] mb-4">error</span>
         <h2 className="text-2xl font-bold uppercase mb-2">Vehicle Not Found</h2>
-        <p className="text-on-surface-variant/70 mb-6">The vehicle you are looking for does not exist or has been sold.</p>
+        <p className="text-text-muted mb-6">The vehicle you are looking for does not exist or has been sold.</p>
         <button 
           onClick={() => navigate("/inventory")}
           className="bg-primary-container text-white px-8 py-3 font-label-bold uppercase text-xs tracking-widest hover:bg-[#b50321] transition-all font-semibold rounded-sm"
@@ -263,7 +263,7 @@ export default function VehicleDetails() {
   }
 
   return (
-    <div className="bg-[#0F0F0F] text-[#e2e2e2] min-h-screen">
+    <div className="bg-bg-main text-text-main min-h-screen transition-colors duration-300">
       
       {/* Spacer for sticky header */}
       <div className="h-20"></div>
@@ -328,7 +328,7 @@ export default function VehicleDetails() {
             
             {/* Gallery */}
             <div className="space-y-4">
-              <div className="relative aspect-video w-full overflow-hidden border border-white/10 bg-[#0C0C0C] rounded-sm flex items-center justify-center">
+              <div className="relative aspect-video w-full overflow-hidden border border-border-color bg-bg-main rounded-sm flex items-center justify-center">
                 {isVideo(activeMedia) ? (
                   <video 
                     className="w-full h-full object-contain animate-fadeIn" 
@@ -414,24 +414,24 @@ export default function VehicleDetails() {
             </div>
 
             {/* Core Stats Bar */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10 border border-white/10 rounded-sm overflow-hidden">
-              <div className="bg-[#121414] p-6 flex flex-col items-center text-center">
-                <span className="text-on-surface-variant/60 font-label-bold text-[10px] uppercase mb-2 font-semibold">{t("conditionLabel")}</span>
-                <span className="font-headline-md text-base font-bold text-white uppercase">{(car.badge || car.condition || 'Occasion').replace(" Arrival", "")}</span>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border-color border border-border-color rounded-sm overflow-hidden">
+              <div className="bg-bg-card p-6 flex flex-col items-center text-center">
+                <span className="text-text-muted font-label-bold text-[10px] uppercase mb-2 font-semibold">{t("conditionLabel")}</span>
+                <span className="font-headline-md text-base font-bold text-text-main uppercase">{(car.badge || car.condition || 'Occasion').replace(" Arrival", "")}</span>
               </div>
-              <div className="bg-[#121414] p-6 flex flex-col items-center text-center">
-                <span className="text-on-surface-variant/60 font-label-bold text-[10px] uppercase mb-2 font-semibold">{t("mileageLabel")}</span>
-                <span className="font-headline-md text-base font-bold text-white uppercase">{car.mileage !== undefined ? `${car.mileage.toLocaleString()} km` : (car.specs?.speed || 'N/A')}</span>
+              <div className="bg-bg-card p-6 flex flex-col items-center text-center">
+                <span className="text-text-muted font-label-bold text-[10px] uppercase mb-2 font-semibold">{t("mileageLabel")}</span>
+                <span className="font-headline-md text-base font-bold text-text-main uppercase">{car.mileage !== undefined ? `${car.mileage.toLocaleString()} km` : (car.specs?.speed || 'N/A')}</span>
               </div>
-              <div className="bg-[#121414] p-6 flex flex-col items-center text-center">
-                <span className="text-on-surface-variant/60 font-label-bold text-[10px] uppercase mb-2 font-semibold">{t("transLabel")}</span>
-                <span className="font-headline-md text-base font-bold text-white uppercase">
+              <div className="bg-bg-card p-6 flex flex-col items-center text-center">
+                <span className="text-text-muted font-label-bold text-[10px] uppercase mb-2 font-semibold">{t("transLabel")}</span>
+                <span className="font-headline-md text-base font-bold text-text-main uppercase">
                   {car.transmission === "Manual" || car.transmission === "Manuelle" ? t("transmissionManual") : t("transmissionAuto")}
                 </span>
               </div>
-              <div className="bg-[#121414] p-6 flex flex-col items-center text-center">
-                <span className="text-on-surface-variant/60 font-label-bold text-[10px] uppercase mb-2 font-semibold">{t("fuelLabel")}</span>
-                <span className="font-headline-md text-base font-bold text-white uppercase">
+              <div className="bg-bg-card p-6 flex flex-col items-center text-center">
+                <span className="text-text-muted font-label-bold text-[10px] uppercase mb-2 font-semibold">{t("fuelLabel")}</span>
+                <span className="font-headline-md text-base font-bold text-text-main uppercase">
                   {car.fuelType === "Diesel" ? t("fuelDiesel") : (car.fuelType === "Essence" || car.fuelType === "Gasoline" ? t("fuelGasoline") : car.fuelType)}
                 </span>
               </div>
@@ -455,7 +455,7 @@ export default function VehicleDetails() {
               <h3 className="font-headline-md text-lg font-bold uppercase tracking-wide">Standard Features</h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 {standardFeatures.map((feat, i) => (
-                  <div key={i} className="flex items-center gap-3 p-4 bg-[#1e2020] border border-white/5 rounded-sm">
+                  <div key={i} className="flex items-center gap-3 p-4 bg-bg-card border border-border-color rounded-sm">
                     <span className="material-symbols-outlined text-primary-container">{feat.icon}</span>
                     <span className="font-label-bold text-xs font-semibold">{feat.name}</span>
                   </div>
@@ -506,7 +506,7 @@ export default function VehicleDetails() {
           <div className="lg:col-span-4 lg:sticky lg:top-28 h-fit space-y-6">
             
             {/* Action Box */}
-            <div className="bg-[#1e2020] p-6 border border-white/10 space-y-6 rounded-sm">
+            <div className="bg-bg-card p-6 border border-border-color space-y-6 rounded-sm">
               <div className="space-y-3">
                 <button 
                   className="w-full bg-primary-container hover:bg-[#b50321] transition-all py-4 font-label-bold text-xs uppercase font-bold text-white rounded-sm"
@@ -515,7 +515,7 @@ export default function VehicleDetails() {
                   Schedule Test Drive
                 </button>
                 <button 
-                  className="w-full border border-white/20 hover:border-white transition-all py-4 font-label-bold text-xs uppercase font-bold text-white rounded-sm"
+                  className="w-full border border-border-color hover:bg-bg-card-hover transition-all py-4 font-label-bold text-xs uppercase font-bold text-text-main rounded-sm"
                   onClick={() => alert("Quote request sent to showroom sales representatives!")}
                 >
                   Request Quote
@@ -523,17 +523,17 @@ export default function VehicleDetails() {
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                <button className="flex items-center justify-center gap-2 border border-white/10 hover:bg-[#282a2b] py-3 text-xs font-semibold rounded-sm transition-colors cursor-pointer">
+                <button className="flex items-center justify-center gap-2 border border-border-color hover:bg-bg-card-hover py-3 text-xs font-semibold rounded-sm transition-colors text-text-main cursor-pointer">
                   <span className="material-symbols-outlined text-base">mail</span>
                   {t("contactBtn")}
                 </button>
-                <button className="flex items-center justify-center gap-2 border border-white/10 hover:bg-[#282a2b] py-3 text-xs font-semibold rounded-sm transition-colors cursor-pointer">
+                <button className="flex items-center justify-center gap-2 border border-border-color hover:bg-bg-card-hover py-3 text-xs font-semibold rounded-sm transition-colors text-text-main cursor-pointer">
                   <span className="material-symbols-outlined text-base">chat</span>
                   {t("whatsappBtn")}
                 </button>
               </div>
 
-              <hr className="border-white/10" />
+              <hr className="border-border-color" />
 
               {/* Loan Estimator */}
               <div className="space-y-6">
@@ -551,14 +551,14 @@ export default function VehicleDetails() {
                       step={car.price < 5000 ? 5 : 5000}
                       value={downPayment}
                       onChange={(e) => setDownPayment(Number(e.target.value))}
-                      className="w-full h-1 bg-[#282a2b] rounded-full appearance-none cursor-pointer accent-primary-container"
+                      className="w-full h-1 bg-bg-card-hover rounded-full appearance-none cursor-pointer accent-primary-container"
                     />
                   </div>
 
                   <div>
                     <div className="flex justify-between mb-2">
-                      <span className="text-[10px] text-on-surface-variant/80 font-label-bold uppercase font-semibold">{t("termLabel")}</span>
-                      <span className="text-white text-xs font-semibold">{term} {t("months")}</span>
+                      <span className="text-[10px] text-text-muted font-label-bold uppercase font-semibold">{t("termLabel")}</span>
+                      <span className="text-text-main text-xs font-semibold">{term} {t("months")}</span>
                     </div>
                     <input 
                       type="range"
@@ -567,29 +567,29 @@ export default function VehicleDetails() {
                       step="12"
                       value={term}
                       onChange={(e) => setTerm(Number(e.target.value))}
-                      className="w-full h-1 bg-[#282a2b] rounded-full appearance-none cursor-pointer accent-primary-container"
+                      className="w-full h-1 bg-bg-card-hover rounded-full appearance-none cursor-pointer accent-primary-container"
                     />
                   </div>
                 </div>
 
-                <div className="bg-[#0c0f0f] p-4 border border-white/5 text-center rounded-sm">
-                  <span className="text-[10px] text-on-surface-variant/80 font-label-bold uppercase font-semibold">{t("monthlyPaymentLabel")}</span>
+                <div className="bg-bg-main p-4 border border-border-color text-center rounded-sm">
+                  <span className="text-[10px] text-text-muted font-label-bold uppercase font-semibold">{t("monthlyPaymentLabel")}</span>
                   <div className="text-primary-container font-headline-lg text-2xl font-extrabold mt-1">
                     {formatPrice(monthlyPayment, car.price)} / mo
                   </div>
-                  <p className="text-[9px] text-on-surface-variant/60 mt-2">{t("calculationNote")}</p>
+                  <p className="text-[9px] text-text-muted mt-2">{t("calculationNote")}</p>
                 </div>
               </div>
             </div>
 
             {/* Small Showroom Badge */}
-            <div className="p-4 bg-[#1a1c1c] border border-white/5 flex items-center gap-4 rounded-sm">
-              <div className="w-10 h-10 bg-[#282a2b] rounded-full flex items-center justify-center flex-shrink-0">
+            <div className="p-4 bg-bg-card border border-border-color flex items-center gap-4 rounded-sm">
+              <div className="w-10 h-10 bg-bg-card-hover rounded-full flex items-center justify-center flex-shrink-0">
                 <span className="material-symbols-outlined text-primary-container text-xl">verified_user</span>
               </div>
               <div>
-                <p className="font-label-bold text-xs text-white font-semibold uppercase">Performance Auto Elite</p>
-                <p className="text-[10px] text-on-surface-variant">Los Angeles, CA • 4.9 ★ (154 reviews)</p>
+                <p className="font-label-bold text-xs text-text-main font-semibold uppercase">Performance Auto Elite</p>
+                <p className="text-[10px] text-text-muted">Los Angeles, CA • 4.9 ★ (154 reviews)</p>
               </div>
             </div>
 

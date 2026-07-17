@@ -201,7 +201,7 @@ export default function Inventory() {
 
 
   return (
-    <div className="bg-[#0F0F0F] text-[#e2e2e2] min-h-screen">
+    <div className="bg-bg-main text-text-main min-h-screen transition-colors duration-300">
       
       {/* Hero Section */}
       <section className="relative h-[280px] flex items-end pb-12 overflow-hidden">
@@ -233,28 +233,27 @@ export default function Inventory() {
               <p className="font-caption text-[10px] text-on-surface-variant uppercase tracking-wider">{t("precisionSearch")}</p>
             </div>
 
-            {/* Keyword Search */}
-            <div className="relative border-b border-white/10 pb-4">
+            <div className="relative border-b border-border-color pb-4">
               <input 
                 type="text" 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#1e2020] border border-white/10 py-2.5 pl-3 pr-10 text-sm text-on-surface placeholder:text-on-surface-variant/40 outline-none rounded-sm"
+                className="w-full bg-bg-card border border-border-color py-2.5 pl-3 pr-10 text-sm text-text-main placeholder:text-text-muted/40 outline-none rounded-sm"
                 placeholder={t("searchInventoryPlaceholder")}
               />
               <span className="material-symbols-outlined absolute right-3 top-3 text-sm text-on-surface-variant">search</span>
             </div>
 
             {/* Category Filter dropdown */}
-            <div className="space-y-2 border-b border-white/10 pb-4">
+            <div className="space-y-2 border-b border-border-color pb-4">
               <h3 className="font-label-bold text-xs text-[#ffb3af] uppercase tracking-wider font-semibold">{t("categoryLabel")}</h3>
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full bg-[#1e2020] border border-white/10 text-sm text-on-surface py-2.5 px-3 rounded-sm outline-none cursor-pointer"
+                className="w-full bg-bg-card border border-border-color text-sm text-text-main py-2.5 px-3 rounded-sm outline-none cursor-pointer"
               >
                 {categoriesList.map((cat) => (
-                  <option key={cat.value} value={cat.value} className="bg-[#1E1E1E]">
+                  <option key={cat.value} value={cat.value} className="bg-bg-card text-text-main">
                     {cat.value === "all" ? t("allCollections") : cat.label}
                   </option>
                 ))}
@@ -262,15 +261,15 @@ export default function Inventory() {
             </div>
 
             {/* Brand Filter dropdown */}
-            <div className="space-y-2 border-b border-white/10 pb-4">
+            <div className="space-y-2 border-b border-border-color pb-4">
               <h3 className="font-label-bold text-xs text-[#ffb3af] uppercase tracking-wider font-semibold">{t("brandLabel")}</h3>
               <select
                 value={selectedBrand}
                 onChange={(e) => setSelectedBrand(e.target.value)}
-                className="w-full bg-[#1e2020] border border-white/10 text-sm text-on-surface py-2.5 px-3 rounded-sm outline-none cursor-pointer"
+                className="w-full bg-bg-card border border-border-color text-sm text-text-main py-2.5 px-3 rounded-sm outline-none cursor-pointer"
               >
                 {brandsList.map((brand) => (
-                  <option key={brand.value} value={brand.value} className="bg-[#1E1E1E]">
+                  <option key={brand.value} value={brand.value} className="bg-bg-card text-text-main">
                     {brand.value === "all" ? t("allBrands") : brand.label}
                   </option>
                 ))}
@@ -278,7 +277,7 @@ export default function Inventory() {
             </div>
 
             {/* Condition Checkboxes */}
-            <div className="space-y-3 border-b border-white/10 pb-4">
+            <div className="space-y-3 border-b border-border-color pb-4">
               <h3 className="font-label-bold text-xs text-[#ffb3af] uppercase tracking-wider font-semibold">{t("conditionLabel")}</h3>
               <div className="space-y-2 mt-2">
                 <label className="flex items-center gap-3 cursor-pointer group">
@@ -286,24 +285,24 @@ export default function Inventory() {
                     type="checkbox" 
                     checked={selectedConditions.includes("New Arrival")}
                     onChange={() => handleConditionChange("New Arrival")}
-                    className="w-4 h-4 bg-[#1e2020] border-white/20 rounded accent-primary-container"
+                    className="w-4 h-4 bg-bg-card border-border-color rounded accent-primary-container"
                   />
-                  <span className="text-sm text-on-surface group-hover:text-[#ffb3af] transition-colors font-medium">{t("newArrivals")}</span>
+                  <span className="text-sm text-text-main group-hover:text-[#ffb3af] transition-colors font-medium">{t("newArrivals")}</span>
                 </label>
                 <label className="flex items-center gap-3 cursor-pointer group">
                   <input 
                     type="checkbox" 
                     checked={selectedConditions.includes("Certified Pre-Owned")}
                     onChange={() => handleConditionChange("Certified Pre-Owned")}
-                    className="w-4 h-4 bg-[#1e2020] border-white/20 rounded accent-primary-container"
+                    className="w-4 h-4 bg-bg-card border-border-color rounded accent-primary-container"
                   />
-                  <span className="text-sm text-on-surface group-hover:text-[#ffb3af] transition-colors font-medium">{t("preOwned")}</span>
+                  <span className="text-sm text-text-main group-hover:text-[#ffb3af] transition-colors font-medium">{t("preOwned")}</span>
                 </label>
               </div>
             </div>
 
             {/* Price Slider */}
-            <div className="space-y-3 border-b border-white/10 pb-4">
+            <div className="space-y-3 border-b border-border-color pb-4">
               <div className="flex justify-between items-center">
                 <h3 className="font-label-bold text-xs text-[#ffb3af] uppercase tracking-wider font-semibold">{t("priceLabel")}</h3>
                 <span className="text-xs font-semibold text-white bg-primary-container px-2 py-0.5 rounded-sm">
@@ -317,7 +316,7 @@ export default function Inventory() {
                 step="5000"
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(Number(e.target.value))}
-                className="w-full h-1 bg-[#1e2020] rounded-lg appearance-none cursor-pointer accent-primary-container"
+                className="w-full h-1 bg-bg-card rounded-lg appearance-none cursor-pointer accent-primary-container"
               />
               <div className="flex justify-between text-[10px] text-on-surface-variant">
                 <span>{formatPrice(80000)}</span>
@@ -338,16 +337,16 @@ export default function Inventory() {
         {/* Results Grid */}
         <section className="flex-grow">
           {/* Sorting / Header */}
-          <div className="flex flex-col sm:flex-row justify-between items-center mb-8 pb-4 border-b border-white/10 gap-4">
-            <span className="text-sm text-on-surface-variant/80">
+          <div className="flex flex-col sm:flex-row justify-between items-center mb-8 pb-4 border-b border-border-color gap-4">
+            <span className="text-sm text-text-muted">
               {t("showingResults").replace("{count}", filteredCars.length).replace("{total}", cars.length)}
             </span>
             <div className="flex items-center gap-3">
-              <span className="font-label-bold text-xs uppercase text-on-surface-variant tracking-wider font-semibold">{t("sorting")}:</span>
+              <span className="font-label-bold text-xs uppercase text-text-muted tracking-wider font-semibold">{t("sorting")}:</span>
               <select 
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="bg-[#1e2020] border border-white/10 text-xs text-on-surface font-label-bold uppercase py-2 pl-3 pr-8 rounded-sm focus:ring-1 focus:ring-primary-container cursor-pointer"
+                className="bg-bg-card border border-border-color text-xs text-text-main font-label-bold uppercase py-2 pl-3 pr-8 rounded-sm focus:ring-1 focus:ring-primary-container cursor-pointer"
               >
                 <option value="newest">{t("sortingNewest")}</option>
                 <option value="price-asc">{t("sortingPriceAsc")}</option>
@@ -374,8 +373,8 @@ export default function Inventory() {
               ))}
             </div>
           ) : filteredCars.length === 0 ? (
-            <div className="text-center py-20 bg-[#121414] rounded-sm border border-white/5">
-              <span className="material-symbols-outlined text-4xl text-on-surface-variant/50 mb-3">
+            <div className="text-center py-20 bg-bg-card rounded-sm border border-border-color">
+              <span className="material-symbols-outlined text-4xl text-text-muted/50 mb-3">
                 search_off
               </span>
               <h3 className="text-lg font-bold text-white uppercase mb-2">{t("noResults")}</h3>
@@ -388,7 +387,7 @@ export default function Inventory() {
                   onClick={() => navigate(`/vehicle/${car.slug}`)}
                   className="matte-card flex flex-col group rounded-sm hover:border-[#ffb3af]/20 transition-all duration-300 cursor-pointer"
                 >
-                  <div className="relative h-64 overflow-hidden bg-[#0C0C0C] border-b border-white/5 flex items-center justify-center">
+                  <div className="relative h-64 overflow-hidden bg-bg-main border-b border-border-color flex items-center justify-center">
                     {/* Blurred background filling edge to edge */}
                     <div 
                       className="absolute inset-0 bg-cover bg-center blur-md opacity-40 scale-110"

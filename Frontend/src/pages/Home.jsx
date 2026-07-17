@@ -72,7 +72,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="bg-[#0F0F0F] text-[#e2e2e2] overflow-x-hidden min-h-screen">
+    <div className="bg-bg-main text-text-main overflow-x-hidden min-h-screen transition-colors duration-300">
       
       {/* Hero Section */}
       <section className="relative h-screen w-full flex items-center overflow-hidden">
@@ -109,7 +109,7 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-[#0c0f0f] border-b border-white/5">
+      <section className="py-16 bg-bg-card border-b border-border-color transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>
             <div className="font-display-lg text-[#ffb3af] text-4xl md:text-5xl mb-2 font-bold">5,000+</div>
@@ -133,7 +133,7 @@ export default function Home() {
 
 
       {/* Featured Vehicles Preview */}
-      <section className="py-24 bg-[#1a1c1c]/50">
+      <section className="py-24 bg-bg-card/50 border-y border-border-color transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-12 flex justify-between items-end">
             <div>
@@ -173,7 +173,7 @@ export default function Home() {
                   onClick={() => navigate(`/vehicle/${car.slug}`)}
                   className="matte-card flex flex-col group rounded-sm cursor-pointer hover:border-[#ffb3af]/20 transition-all duration-300"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden bg-[#0C0C0C] flex items-center justify-center border-b border-white/5">
+                  <div className="relative aspect-[16/10] overflow-hidden bg-bg-main flex items-center justify-center border-b border-border-color">
                     {/* Blurred background filling edge to edge */}
                     <div 
                       className="absolute inset-0 bg-cover bg-center blur-md opacity-40 scale-110"
@@ -319,61 +319,61 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
           
           <div className="text-center group">
-            <div className="w-16 h-16 bg-[#1a1c1c] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
+            <div className="w-16 h-16 bg-bg-card-hover rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
               <span className="material-symbols-outlined text-[#ffb3af] text-3xl">verified</span>
             </div>
             <h3 className="font-headline-md text-lg font-bold mb-3 uppercase">Certified Vehicles</h3>
-            <p className="text-on-surface-variant/80 text-sm max-w-sm mx-auto leading-relaxed">
+            <p className="text-text-muted text-sm max-w-sm mx-auto leading-relaxed">
               Every vehicle in our inventory undergoes a rigorous 150-point inspection to ensure absolute technical perfection.
             </p>
           </div>
 
           <div className="text-center group">
-            <div className="w-16 h-16 bg-[#1a1c1c] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
+            <div className="w-16 h-16 bg-bg-card-hover rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
               <span className="material-symbols-outlined text-[#ffb3af] text-3xl">payments</span>
             </div>
             <h3 className="font-headline-md text-lg font-bold mb-3 uppercase">Financing Available</h3>
-            <p className="text-on-surface-variant/80 text-sm max-w-sm mx-auto leading-relaxed">
+            <p className="text-text-muted text-sm max-w-sm mx-auto leading-relaxed">
               Flexible financing options tailored to your lifestyle, with competitive rates and rapid approval processes.
             </p>
           </div>
 
           <div className="text-center group">
-            <div className="w-16 h-16 bg-[#1a1c1c] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
+            <div className="w-16 h-16 bg-bg-card-hover rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
               <span className="material-symbols-outlined text-[#ffb3af] text-3xl">swap_horiz</span>
             </div>
             <h3 className="font-headline-md text-lg font-bold mb-3 uppercase">Trade-In Program</h3>
-            <p className="text-on-surface-variant/80 text-sm max-w-sm mx-auto leading-relaxed">
+            <p className="text-text-muted text-sm max-w-sm mx-auto leading-relaxed">
               Receive a premium valuation for your current vehicle with our transparent and hassle-free trade-in system.
             </p>
           </div>
 
           <div className="text-center group">
-            <div className="w-16 h-16 bg-[#1a1c1c] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
+            <div className="w-16 h-16 bg-bg-card-hover rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
               <span className="material-symbols-outlined text-[#ffb3af] text-3xl">security</span>
             </div>
             <h3 className="font-headline-md text-lg font-bold mb-3 uppercase">Comprehensive Warranty</h3>
-            <p className="text-on-surface-variant/80 text-sm max-w-sm mx-auto leading-relaxed">
+            <p className="text-text-muted text-sm max-w-sm mx-auto leading-relaxed">
               Drive with complete peace of mind knowing your investment is protected by our industry-leading warranty coverage.
             </p>
           </div>
 
           <div className="text-center group">
-            <div className="w-16 h-16 bg-[#1a1c1c] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
+            <div className="w-16 h-16 bg-bg-card-hover rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
               <span className="material-symbols-outlined text-[#ffb3af] text-3xl">build</span>
             </div>
             <h3 className="font-headline-md text-lg font-bold mb-3 uppercase">Vehicle Inspection</h3>
-            <p className="text-on-surface-variant/80 text-sm max-w-sm mx-auto leading-relaxed">
+            <p className="text-text-muted text-sm max-w-sm mx-auto leading-relaxed">
               Our master technicians utilize state-of-the-art diagnostic equipment to maintain the highest standards of safety.
             </p>
           </div>
 
           <div className="text-center group">
-            <div className="w-16 h-16 bg-[#1a1c1c] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
+            <div className="w-16 h-16 bg-bg-card-hover rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
               <span className="material-symbols-outlined text-[#ffb3af] text-3xl">support_agent</span>
             </div>
             <h3 className="font-headline-md text-lg font-bold mb-3 uppercase">Professional Support</h3>
-            <p className="text-on-surface-variant/80 text-sm max-w-sm mx-auto leading-relaxed">
+            <p className="text-text-muted text-sm max-w-sm mx-auto leading-relaxed">
               Dedicated concierge service available to assist you throughout every step of your journey with us.
             </p>
           </div>
@@ -382,7 +382,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-[#0c0f0f]">
+      <section className="py-24 bg-bg-card border-t border-border-color transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="font-headline-lg text-3xl uppercase font-bold text-white mb-4 tracking-wide">

@@ -12,8 +12,23 @@ export default function Header() {
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [favoritesOpen, setFavoritesOpen] = useState(false);
+  const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "dark");
   const navigate = useNavigate();
   const { language, setLanguage, t, dir } = useTranslation();
+
+  useEffect(() => {
+    const html = document.documentElement;
+    if (theme === "light") {
+      html.classList.remove("dark");
+    } else {
+      html.classList.add("dark");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === "dark" ? "light" : "dark");
+  };
 
   const langNames = {
     en: "English",
@@ -108,7 +123,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-[#121414] border-b border-white/10">
+    <header className="fixed top-0 left-0 w-full z-50 bg-bg-header border-b border-border-color transition-all duration-300">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link 
@@ -125,7 +140,7 @@ export default function Header() {
               <a
                 key={item.name}
                 href={item.path}
-                className="text-on-background/70 font-label-bold text-sm uppercase tracking-wider hover:text-on-background transition-colors"
+                className="text-text-main/70 font-label-bold text-sm uppercase tracking-wider hover:text-text-main transition-colors"
               >
                 {item.name}
               </a>
@@ -137,7 +152,7 @@ export default function Header() {
                   `font-label-bold text-sm uppercase tracking-wider transition-colors pb-1 border-b-2 ${
                     isActive
                       ? "text-primary-container border-primary-container"
-                      : "text-on-background/70 border-transparent hover:text-on-background"
+                      : "text-text-main/70 border-transparent hover:text-text-main"
                   }`
                 }
               >
@@ -153,7 +168,7 @@ export default function Header() {
           <div className="relative">
             <button
               onClick={() => setLangMenuOpen(!langMenuOpen)}
-              className="flex items-center justify-center w-9 h-9 rounded-full hover:bg-white/5 text-[#e2e2e2] transition-colors cursor-pointer select-none"
+              className="flex items-center justify-center w-9 h-9 rounded-full hover:bg-bg-card-hover text-text-main transition-colors cursor-pointer select-none"
             >
               <span className="material-symbols-outlined text-xl text-primary-container">
                 language
@@ -169,7 +184,7 @@ export default function Header() {
                 />
                 
                 {/* Dropdown panel */}
-                <div className="absolute right-0 mt-2 w-32 bg-[#1c1e1e] border border-white/10 rounded-sm shadow-2xl overflow-hidden z-50 animate-slideDown">
+                <div className="absolute right-0 mt-2 w-32 bg-bg-card border border-border-color rounded-sm shadow-2xl overflow-hidden z-50 animate-slideDown">
                   <div className="flex flex-col py-1">
                     {Object.entries(langNames).map(([code, name]) => (
                       <button
@@ -178,10 +193,10 @@ export default function Header() {
                           setLanguage(code);
                           setLangMenuOpen(false);
                         }}
-                        className={`px-4 py-2 text-xs transition-colors cursor-pointer hover:bg-[#282a2b] ${
+                        className={`px-4 py-2 text-xs transition-colors cursor-pointer hover:bg-bg-card-hover ${
                           language === code 
                             ? "text-primary-container font-extrabold" 
-                            : "text-on-surface-variant/80 hover:text-white"
+                            : "text-text-muted hover:text-text-main"
                         }`}
                         style={{ textAlign: dir === 'rtl' ? 'right' : 'left' }}
                       >
@@ -197,7 +212,7 @@ export default function Header() {
           {/* Favorites Heart Icon */}
           <button
             onClick={() => setFavoritesOpen(true)}
-            className="relative flex items-center justify-center w-9 h-9 rounded-full hover:bg-white/5 text-[#e2e2e2] transition-colors cursor-pointer select-none mr-1"
+            className="relative flex items-center justify-center w-9 h-9 rounded-full hover:bg-bg-card-hover text-text-main transition-colors cursor-pointer select-none mr-1"
             aria-label="Favorites list"
           >
             <span className="material-symbols-outlined text-xl text-primary-container">
@@ -208,6 +223,17 @@ export default function Header() {
                 {favorites.length}
               </span>
             )}
+          </button>
+
+          {/* Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            className="flex items-center justify-center w-9 h-9 rounded-full hover:bg-white/5 text-primary-container transition-colors cursor-pointer select-none mr-1"
+            aria-label="Toggle theme"
+          >
+            <span className="material-symbols-outlined text-xl">
+              {theme === "dark" ? "light_mode" : "dark_mode"}
+            </span>
           </button>
 
           <span 
@@ -227,7 +253,7 @@ export default function Header() {
 
       {/* Slide-Down Search Drawer */}
       {searchOpen && (
-        <div className="bg-[#1a1c1c] border-b border-white/10 px-6 py-4 animate-slideDown">
+        <div className="bg-bg-card border-b border-border-color px-6 py-4 animate-slideDown">
           <div className="max-w-3xl mx-auto relative">
             <form onSubmit={handleSearchSubmit} className="relative flex items-center">
               <input
@@ -235,10 +261,10 @@ export default function Header() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t("searchPlaceholder")}
-                className="w-full bg-[#0c0f0f] border border-white/10 py-3.5 pl-12 pr-20 text-sm text-on-surface placeholder:text-on-surface-variant/30 outline-none focus:border-[#ffb3af]/50 rounded-sm transition-all"
+                className="w-full bg-bg-main border border-border-color py-3.5 pl-12 pr-20 text-sm text-text-main placeholder:text-text-muted/45 outline-none focus:border-[#ffb3af]/50 rounded-sm transition-all"
                 autoFocus
               />
-              <span className="material-symbols-outlined absolute left-4 text-base text-on-surface-variant/50">
+              <span className="material-symbols-outlined absolute left-4 text-base text-text-muted/50">
                 search
               </span>
               
@@ -263,29 +289,29 @@ export default function Header() {
 
             {/* Autocomplete Suggestions Panel */}
             {suggestions.length > 0 && (
-              <div className="absolute left-0 right-0 mt-2 bg-[#1e2020] border border-white/10 rounded-sm shadow-2xl overflow-hidden z-50">
-                <div className="p-2 border-b border-white/5 bg-[#0c0f0f]/40">
-                  <span className="text-[9px] text-on-surface-variant/60 font-label-bold uppercase tracking-wider font-semibold">
+              <div className="absolute left-0 right-0 mt-2 bg-bg-card border border-border-color rounded-sm shadow-2xl overflow-hidden z-50">
+                <div className="p-2 border-b border-border-color bg-bg-main/40">
+                  <span className="text-[9px] text-text-muted/65 font-label-bold uppercase tracking-wider font-semibold">
                     {t("matchingVehicles")}
                   </span>
                 </div>
-                <div className="divide-y divide-white/5">
+                <div className="divide-y divide-border-color">
                   {suggestions.map((car) => (
                     <div
                       key={car._id || car.id}
                       onClick={() => handleSuggestionClick(car.slug)}
-                      className="p-3 flex items-center justify-between hover:bg-[#282a2b] cursor-pointer transition-colors group"
+                      className="p-3 flex items-center justify-between hover:bg-bg-card-hover cursor-pointer transition-colors group"
                     >
                       <div className="flex items-center gap-3 min-w-0">
                         <div 
-                          className="w-10 h-8 bg-cover bg-center rounded-sm border border-white/5 bg-[#0c0f0f]"
+                          className="w-10 h-8 bg-cover bg-center rounded-sm border border-border-color bg-bg-main"
                           style={{ backgroundImage: `url('${car.imageCover ? getMediaUrl(car.imageCover) : ""}')` }}
                         ></div>
                         <div className="min-w-0">
-                          <h4 className="text-xs font-bold text-white uppercase truncate group-hover:text-[#ffb3af] transition-colors">
+                          <h4 className="text-xs font-bold text-text-main uppercase truncate group-hover:text-[#ffb3af] transition-colors">
                             {car.name || `${car.marke} ${car.model}`}
                           </h4>
-                          <p className="text-[8px] text-on-surface-variant uppercase tracking-wider mt-0.5 truncate">
+                          <p className="text-[8px] text-text-muted uppercase tracking-wider mt-0.5 truncate">
                             {car.year} • {car.transmission} • {car.fuelType}
                           </p>
                         </div>
@@ -301,7 +327,7 @@ export default function Header() {
             
             {/* Empty Suggestions Feedback */}
             {searchQuery.trim() && suggestions.length === 0 && (
-              <div className="absolute left-0 right-0 mt-2 bg-[#1e2020] border border-white/10 p-4 text-center text-xs text-on-surface-variant/50 rounded-sm shadow-2xl z-50">
+              <div className="absolute left-0 right-0 mt-2 bg-bg-card border border-border-color p-4 text-center text-xs text-text-muted/50 rounded-sm shadow-2xl z-50">
                 {t("noVehiclesFound")}
               </div>
             )}
@@ -311,14 +337,14 @@ export default function Header() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#1E1E1E] border-b border-white/10 px-6 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-bg-card border-b border-border-color px-6 py-4 flex flex-col gap-4">
           {navItems.map((item) => (
             item.path.startsWith("#") ? (
               <a
                 key={item.name}
                 href={item.path}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-on-background/70 font-label-bold text-sm uppercase tracking-wider hover:text-on-background transition-colors py-2"
+                className="text-text-main/70 font-label-bold text-sm uppercase tracking-wider hover:text-text-main transition-colors py-2"
               >
                 {item.name}
               </a>
@@ -329,7 +355,7 @@ export default function Header() {
                 onClick={() => setMobileMenuOpen(false)}
                 className={({ isActive }) =>
                   `font-label-bold text-sm uppercase tracking-wider transition-colors py-2 block ${
-                    isActive ? "text-primary-container" : "text-on-background/70"
+                    isActive ? "text-primary-container" : "text-text-main/70"
                   }`
                 }
               >
