@@ -12,7 +12,52 @@ export default function VehicleDetails() {
   const [loading, setLoading] = useState(true);
   const [activeMedia, setActiveMedia] = useState('');
   const [relatedCars, setRelatedCars] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
+  useEffect(() => {
+    const loadFavorites = () => {
+      try {
+        const saved = JSON.parse(localStorage.getItem("favorites")) || [];
+        setFavorites(saved);
+      } catch {
+        setFavorites([]);
+      }
+    };
+    loadFavorites();
+    window.addEventListener("favorites-updated", loadFavorites);
+    return () => window.removeEventListener("favorites-updated", loadFavorites);
+  }, []);
+
+  const isFavorited = (id) => {
+    return favorites.some(fav => fav._id === id);
+  };
+
+  const toggleFavorite = (car) => {
+    try {
+      const saved = JSON.parse(localStorage.getItem("favorites")) || [];
+      const index = saved.findIndex(fav => fav._id === car._id);
+      if (index > -1) {
+        saved.splice(index, 1);
+      } else {
+        saved.push({
+          _id: car._id,
+          name: car.name,
+          marke: car.marke,
+          model: car.model,
+          year: car.year,
+          price: car.price,
+          finalPrice: car.finalPrice,
+          imageCover: car.imageCover,
+          slug: car.slug,
+          availability: car.availability
+        });
+      }
+      localStorage.setItem("favorites", JSON.stringify(saved));
+      window.dispatchEvent(new Event("favorites-updated"));
+    } catch (e) {
+      console.error("Error toggling favorite:", e.message);
+    }
+  };
   // Finance Calculator States
   const [downPayment, setDownPayment] = useState(0);
   const [term, setTerm] = useState(60);
@@ -305,6 +350,16 @@ export default function VehicleDetails() {
                     }}
                   />
                 )}
+                {/* Favorite button overlay */}
+                <button
+                  onClick={() => toggleFavorite(car)}
+                  className="absolute top-4 right-4 z-20 flex items-center justify-center w-8 h-8 rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-sm transition-all hover:scale-110 cursor-pointer border border-white/15"
+                >
+                  <span className={`material-symbols-outlined text-lg ${isFavorited(car._id) ? "text-red-500 fill-1" : "text-white"}`}>
+                    favorite
+                  </span>
+                </button>
+
                 {!isVideo(activeMedia) && (
                   <button
                     onClick={() => {
@@ -312,7 +367,7 @@ export default function VehicleDetails() {
                       setLightboxIndex(idx >= 0 ? idx : 0);
                       setLightboxOpen(true);
                     }}
-                    className="absolute top-4 right-4 bg-black/60 hover:bg-black/90 text-white w-8 h-8 rounded-full border border-white/15 flex items-center justify-center cursor-pointer transition-all duration-200"
+                    className="absolute top-4 right-14 bg-black/60 hover:bg-black/90 text-white w-8 h-8 rounded-full border border-white/15 flex items-center justify-center cursor-pointer transition-all duration-200"
                     title="Zoom Image"
                   >
                     <span className="material-symbols-outlined text-sm">zoom_in</span>
@@ -567,6 +622,20 @@ export default function VehicleDetails() {
                       src={getMediaUrl(related.imageCover)} 
                       alt={related.name || `${related.marke} ${related.model}`} 
                     />
+
+                    {/* Favorite button overlay */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleFavorite(related);
+                      }}
+                      className="absolute top-4 right-4 z-20 flex items-center justify-center w-8 h-8 rounded-full bg-black/40 hover:bg-black/60 text-white backdrop-blur-sm transition-all hover:scale-110 cursor-pointer"
+                    >
+                      <span className={`material-symbols-outlined text-lg ${isFavorited(related._id) ? "text-red-500 fill-1" : "text-white"}`}>
+                        favorite
+                      </span>
+                    </button>
+
                     {(related.availability === 'Vendu' || related.availability === 'Réservé' || related.badge || related.condition) && (
                       <div className={`absolute top-4 left-4 z-20 text-white px-3 py-1 font-label-bold text-[10px] uppercase font-bold rounded-sm shadow-md ${
                         related.availability === 'Vendu'

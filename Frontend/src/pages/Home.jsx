@@ -8,7 +8,52 @@ export default function Home() {
   const [featuredCars, setFeaturedCars] = useState([]);
   const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
+  const [favorites, setFavorites] = useState([]);
 
+  useEffect(() => {
+    const loadFavorites = () => {
+      try {
+        const saved = JSON.parse(localStorage.getItem("favorites")) || [];
+        setFavorites(saved);
+      } catch {
+        setFavorites([]);
+      }
+    };
+    loadFavorites();
+    window.addEventListener("favorites-updated", loadFavorites);
+    return () => window.removeEventListener("favorites-updated", loadFavorites);
+  }, []);
+
+  const isFavorited = (id) => {
+    return favorites.some(fav => fav._id === id);
+  };
+
+  const toggleFavorite = (car) => {
+    try {
+      const saved = JSON.parse(localStorage.getItem("favorites")) || [];
+      const index = saved.findIndex(fav => fav._id === car._id);
+      if (index > -1) {
+        saved.splice(index, 1);
+      } else {
+        saved.push({
+          _id: car._id,
+          name: car.name,
+          marke: car.marke,
+          model: car.model,
+          year: car.year,
+          price: car.price,
+          finalPrice: car.finalPrice,
+          imageCover: car.imageCover,
+          slug: car.slug,
+          availability: car.availability
+        });
+      }
+      localStorage.setItem("favorites", JSON.stringify(saved));
+      window.dispatchEvent(new Event("favorites-updated"));
+    } catch (e) {
+      console.error("Error toggling favorite:", e.message);
+    }
+  };
   useEffect(() => {
     const fetchCars = async () => {
       try {
@@ -140,6 +185,20 @@ export default function Home() {
                       src={getMediaUrl(car.imageCover)} 
                       alt={car.name || `${car.marke} ${car.model}`}
                     />
+                    
+                    {/* Favorite button overlay */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleFavorite(car);
+                      }}
+                      className="absolute top-4 right-4 z-20 flex items-center justify-center w-8 h-8 rounded-full bg-black/40 hover:bg-black/60 text-white backdrop-blur-sm transition-all hover:scale-110 cursor-pointer"
+                    >
+                      <span className={`material-symbols-outlined text-lg ${isFavorited(car._id) ? "text-red-500 fill-1" : "text-white"}`}>
+                        favorite
+                      </span>
+                    </button>
+
                     {(car.availability === 'Vendu' || car.availability === 'Réservé' || car.badge) && (
                       <div className={`absolute top-4 left-4 z-20 text-white px-3 py-1 font-label-bold text-[10px] uppercase font-bold tracking-wider rounded-sm shadow-md ${
                         car.availability === 'Vendu'

@@ -10,6 +10,8 @@ export default function Header() {
   const [vehicles, setVehicles] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
+  const [favorites, setFavorites] = useState([]);
+  const [favoritesOpen, setFavoritesOpen] = useState(false);
   const navigate = useNavigate();
   const { language, setLanguage, t, dir } = useTranslation();
 
@@ -17,6 +19,32 @@ export default function Header() {
     en: "English",
     fr: "Français",
     ar: "العربية"
+  };
+
+  // Load and synchronize favorites
+  useEffect(() => {
+    const loadFavorites = () => {
+      try {
+        const saved = JSON.parse(localStorage.getItem("favorites")) || [];
+        setFavorites(saved);
+      } catch {
+        setFavorites([]);
+      }
+    };
+    loadFavorites();
+    window.addEventListener("favorites-updated", loadFavorites);
+    return () => window.removeEventListener("favorites-updated", loadFavorites);
+  }, []);
+
+  const removeFavorite = (id) => {
+    try {
+      const saved = JSON.parse(localStorage.getItem("favorites")) || [];
+      const updated = saved.filter(fav => fav._id !== id);
+      localStorage.setItem("favorites", JSON.stringify(updated));
+      window.dispatchEvent(new Event("favorites-updated"));
+    } catch (e) {
+      console.error("Error removing favorite:", e.message);
+    }
   };
 
   // Load vehicles for autocomplete matching
@@ -166,6 +194,22 @@ export default function Header() {
             )}
           </div>
 
+          {/* Favorites Heart Icon */}
+          <button
+            onClick={() => setFavoritesOpen(true)}
+            className="relative flex items-center justify-center w-9 h-9 rounded-full hover:bg-white/5 text-[#e2e2e2] transition-colors cursor-pointer select-none mr-1"
+            aria-label="Favorites list"
+          >
+            <span className="material-symbols-outlined text-xl text-primary-container">
+              favorite
+            </span>
+            {favorites.length > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#d90429] text-[9px] font-bold text-white shadow-md">
+                {favorites.length}
+              </span>
+            )}
+          </button>
+
           <span 
             className="material-symbols-outlined text-primary-container cursor-pointer hover:scale-105 transition-transform"
             onClick={toggleSearch}
@@ -293,6 +337,125 @@ export default function Header() {
               </NavLink>
             )
           ))}
+        </div>
+      )}
+
+      {/* Slide-Over Favorites Drawer */}
+      {favoritesOpen && (
+        <div className="fixed inset-0 z-50 overflow-hidden" role="dialog" aria-modal="true">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300"
+            onClick={() => setFavoritesOpen(false)}
+          />
+
+          <div className="absolute inset-y-0 right-0 max-w-full flex">
+            {/* Drawer Container */}
+            <div 
+              className={`w-screen max-w-md bg-[#121414] border-l border-white/10 flex flex-col shadow-2xl h-full transform transition-transform duration-300 ease-in-out`}
+              style={{ direction: dir }}
+            >
+              {/* Header */}
+              <div className="px-6 py-6 border-b border-white/10 flex justify-between items-center bg-[#181a1a]">
+                <h2 className="font-headline-md text-lg font-bold uppercase tracking-wider text-white flex items-center gap-2">
+                  <span className="material-symbols-outlined text-red-500 fill-1">favorite</span>
+                  {t("favoritesTitle")}
+                </h2>
+                <button 
+                  onClick={() => setFavoritesOpen(false)}
+                  className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-white/5 text-on-surface-variant transition-colors cursor-pointer"
+                >
+                  <span className="material-symbols-outlined">close</span>
+                </button>
+              </div>
+
+              {/* Drawer Body */}
+              <div className="flex-grow overflow-y-auto p-6 space-y-4 custom-scrollbar">
+                {favorites.length === 0 ? (
+                  <div className="h-full flex flex-col justify-center items-center text-center space-y-6 py-12">
+                    <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-on-surface-variant/40">
+                      <span className="material-symbols-outlined text-4xl">favorite_border</span>
+                    </div>
+                    <div>
+                      <p className="text-sm text-on-surface-variant/60 font-semibold">{t("favoritesEmpty")}</p>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setFavoritesOpen(false);
+                        navigate("/inventory");
+                      }}
+                      className="bg-primary-container hover:bg-[#b50321] text-white text-xs font-label-bold uppercase tracking-widest px-6 py-3 rounded-sm transition-all shadow-lg hover:shadow-red-950/20"
+                    >
+                      {t("favoritesExplore")}
+                    </button>
+                  </div>
+                ) : (
+                  favorites.map((car) => (
+                    <div 
+                      key={car._id}
+                      onClick={() => {
+                        setFavoritesOpen(false);
+                        navigate(`/vehicle/${car.slug}`);
+                      }}
+                      className="flex gap-4 p-3 rounded-sm border border-white/5 hover:border-white/15 bg-[#1a1c1c]/50 hover:bg-[#1a1c1c] transition-all cursor-pointer group relative overflow-hidden"
+                    >
+                      {/* Image Thumbnail */}
+                      <div className="w-24 h-16 rounded-sm overflow-hidden flex-shrink-0 border border-white/10">
+                        <img 
+                          src={getMediaUrl(car.imageCover)} 
+                          alt={car.name} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+
+                      {/* Details */}
+                      <div className="flex-grow flex flex-col justify-between min-w-0 pr-6">
+                        <div>
+                          <span className="text-[9px] text-[#ffb3af] font-label-bold uppercase tracking-wider font-semibold">
+                            {car.marke}
+                          </span>
+                          <h4 className="font-headline-md text-xs font-bold text-white truncate uppercase italic">
+                            {car.model}
+                          </h4>
+                        </div>
+                        <div className="flex justify-between items-end mt-1">
+                          <span className="text-white font-headline-md text-xs font-bold">
+                            {formatPrice(car.finalPrice !== undefined && car.finalPrice < car.price ? car.finalPrice : car.price)}
+                          </span>
+                          {/* Availability Badge */}
+                          <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded-sm uppercase tracking-wider ${
+                            car.availability === 'Vendu' 
+                              ? 'bg-red-950/50 text-red-400 border border-red-500/20' 
+                              : car.availability === 'Réservé'
+                                ? 'bg-amber-950/50 text-amber-400 border border-amber-500/20'
+                                : 'bg-green-950/50 text-green-400 border border-green-500/20'
+                          }`}>
+                            {car.availability === 'Vendu' 
+                              ? t("statusSold") 
+                              : car.availability === 'Réservé' 
+                                ? t("statusReserved") 
+                                : t("statusAvailable")}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Remove Button */}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          removeFavorite(car._id);
+                        }}
+                        className="absolute right-2 top-2 p-1 text-on-surface-variant/40 hover:text-red-500 transition-colors cursor-pointer opacity-0 group-hover:opacity-100 focus:opacity-100"
+                        title={t("favoritesRemove")}
+                      >
+                        <span className="material-symbols-outlined text-base">delete</span>
+                      </button>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </header>

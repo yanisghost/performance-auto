@@ -123,7 +123,11 @@ const translations = {
     fuelDiesel: "Diesel",
     fuelGasoline: "Gasoline",
     fuelElectric: "Electric",
-    fuelHybrid: "Hybrid"
+    fuelHybrid: "Hybrid",
+    favoritesTitle: "My Favorites",
+    favoritesEmpty: "Your favorites list is empty.",
+    favoritesExplore: "Explore Inventory",
+    favoritesRemove: "Remove"
   },
   fr: {
     // Header
@@ -210,7 +214,11 @@ const translations = {
     fuelDiesel: "Diesel",
     fuelGasoline: "Essence",
     fuelElectric: "Électrique",
-    fuelHybrid: "Hybride"
+    fuelHybrid: "Hybride",
+    favoritesTitle: "Mes Favoris",
+    favoritesEmpty: "Votre liste de favoris est vide.",
+    favoritesExplore: "Explorer l'Inventaire",
+    favoritesRemove: "Supprimer"
   },
   ar: {
     // Header
@@ -297,6 +305,10 @@ const translations = {
     fuelDiesel: "ديزل",
     fuelGasoline: "بنزين",
     fuelElectric: "كهربائي",
-    fuelHybrid: "هجين"
+    fuelHybrid: "هجين",
+    favoritesTitle: "المفضلة الخاصة بي",
+    favoritesEmpty: "قائمة المفضلة فارغة.",
+    favoritesExplore: "تصفح المعرض",
+    favoritesRemove: "حذف"
   }
 };
