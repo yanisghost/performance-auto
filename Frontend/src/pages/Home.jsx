@@ -311,7 +311,7 @@ export default function Home() {
       {/* Why Choose Us */}
       <section className="py-24 max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="font-headline-lg text-3xl uppercase font-bold text-white mb-4 tracking-wide">
+          <h2 className="font-headline-lg text-3xl uppercase font-bold text-text-main mb-4 tracking-wide">
             Why Choose Performance Auto
           </h2>
           <div className="h-1 w-24 bg-primary-container mx-auto"></div>
