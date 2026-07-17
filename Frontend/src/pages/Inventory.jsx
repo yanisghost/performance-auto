@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { API_BASE_URL, getMediaUrl, formatPrice } from "../config";
 import { useTranslation } from "../context/LanguageContext";
+import CardImageGallery from "../components/CardImageGallery";
 
 export default function Inventory() {
   const navigate = useNavigate();
@@ -387,48 +388,12 @@ export default function Inventory() {
                   onClick={() => navigate(`/vehicle/${car.slug}`)}
                   className="matte-card flex flex-col group rounded-sm hover:border-[#ffb3af]/20 transition-all duration-300 cursor-pointer"
                 >
-                  <div className="relative h-64 overflow-hidden bg-bg-main border-b border-border-color flex items-center justify-center">
-                    {/* Blurred background filling edge to edge */}
-                    <div 
-                      className="absolute inset-0 bg-cover bg-center blur-md opacity-40 scale-110"
-                      style={{ backgroundImage: `url('${getMediaUrl(car.imageCover)}')` }}
-                    ></div>
-                    {/* Contained sharp image in front */}
-                    <img 
-                      className="relative z-10 max-w-full max-h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500" 
-                      src={getMediaUrl(car.imageCover)} 
-                      alt={car.name || `${car.marke} ${car.model}`}
-                    />
-
-                    {/* Favorite button overlay */}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        toggleFavorite(car);
-                      }}
-                      className="absolute top-4 right-4 z-20 flex items-center justify-center w-8 h-8 rounded-full bg-black/40 hover:bg-black/60 text-white backdrop-blur-sm transition-all hover:scale-110 cursor-pointer"
-                    >
-                      <span className={`material-symbols-outlined text-lg ${isFavorited(car._id) ? "text-red-500 fill-1" : "text-white"}`}>
-                        favorite
-                      </span>
-                    </button>
-
-                    {(car.availability === 'Vendu' || car.availability === 'Réservé' || car.badge) && (
-                      <div className={`absolute top-4 left-4 z-20 text-white px-3 py-1 font-label-bold text-[10px] tracking-widest uppercase font-bold rounded-sm shadow-md ${
-                        car.availability === 'Vendu'
-                          ? 'bg-[#B50321]'
-                          : car.availability === 'Réservé'
-                            ? 'bg-amber-600'
-                            : 'bg-primary-container'
-                      }`}>
-                        {car.availability === 'Vendu' 
-                          ? t("statusSold") 
-                          : car.availability === 'Réservé' 
-                            ? t("statusReserved") 
-                            : car.badge}
-                      </div>
-                    )}
-                  </div>
+                  <CardImageGallery 
+                    car={car} 
+                    isFavorited={isFavorited} 
+                    toggleFavorite={toggleFavorite} 
+                    aspectClass="h-64" 
+                  />
 
                   <div className="p-6 flex-grow flex flex-col justify-between">
                     <div>
