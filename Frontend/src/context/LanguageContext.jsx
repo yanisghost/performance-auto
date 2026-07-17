@@ -140,7 +140,10 @@ const translations = {
     serviceTradeTitle: "Trade-in",
     serviceTradeDesc: "A quick appraisal and practical solution to facilitate your car change.",
     serviceConsultTitle: "Consultation",
-    serviceConsultDesc: "Listening, guidance, and expertise to help you make the right decision."
+    serviceConsultDesc: "Listening, guidance, and expertise to help you make the right decision.",
+    allTransmissions: "All Transmissions",
+    allFuels: "All Fuel Types",
+    allYears: "All Years"
   },
   fr: {
     // Header
@@ -244,7 +247,10 @@ const translations = {
     serviceTradeTitle: "Reprise",
     serviceTradeDesc: "Une estimation rapide et une solution pratique pour faciliter votre changement de voiture.",
     serviceConsultTitle: "Consultation",
-    serviceConsultDesc: "Écoute, conseils et expertise pour vous aider à prendre la bonne décision."
+    serviceConsultDesc: "Écoute, conseils et expertise pour vous aider à prendre la bonne décision.",
+    allTransmissions: "Toutes les Transmissions",
+    allFuels: "Tous les Carburants",
+    allYears: "Toutes les Années"
   },
   ar: {
     // Header
@@ -348,6 +354,9 @@ const translations = {
     serviceTradeTitle: "الاستبدال",
     serviceTradeDesc: "تقييم سريع وحل عملي لتسهيل تغيير سيارتك.",
     serviceConsultTitle: "الاستشارات",
-    serviceConsultDesc: "الاستماع، التوجيه، والخبرة لمساعدتك على اتخاذ القرار الصحيح."
+    serviceConsultDesc: "الاستماع، التوجيه، والخبرة لمساعدتك على اتخاذ القرار الصحيح.",
+    allTransmissions: "كل أنواع ناقل الحركة",
+    allFuels: "كل أنواع الوقود",
+    allYears: "كل السنوات"
   }
 };

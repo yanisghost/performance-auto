@@ -66,6 +66,19 @@ export default function Inventory() {
     { label: "Electric / Hybrid", value: "electric-hybrid" }
   ]);
 
+  const [brandsList, setBrandsList] = useState([
+    { value: "all", label: "All Brands" }
+  ]);
+  const [yearsList, setYearsList] = useState([
+    { value: "all", label: "All Years" }
+  ]);
+  const [selectedTransmission, setSelectedTransmission] = useState("all");
+  const [selectedFuelType, setSelectedFuelType] = useState("all");
+  const [selectedYear, setSelectedYear] = useState("all");
+  
+  const [minPriceLimit, setMinPriceLimit] = useState(0);
+  const [maxPriceLimit, setMaxPriceLimit] = useState(200000);
+
   useEffect(() => {
     const fetchCars = async () => {
       try {
@@ -73,6 +86,33 @@ export default function Inventory() {
         const data = await response.json();
         const docs = data.data?.docs || data.data?.data || [];
         setCars(docs);
+
+        if (docs.length > 0) {
+          // Dynamic Brands
+          const uniqueBrands = [...new Set(docs.map(c => c.marke).filter(Boolean))].sort();
+          setBrandsList([
+            { value: "all", label: t("allBrands") },
+            ...uniqueBrands.map(b => ({ value: b, label: b }))
+          ]);
+
+          // Dynamic Years
+          const uniqueYears = [...new Set(docs.map(c => c.year).filter(Boolean))].sort((a, b) => b - a);
+          setYearsList([
+            { value: "all", label: t("allYears") },
+            ...uniqueYears.map(y => ({ value: String(y), label: String(y) }))
+          ]);
+
+          // Dynamic Price limits
+          const prices = docs.map(c => c.price).filter(p => typeof p === 'number');
+          if (prices.length > 0) {
+            const minP = Math.min(...prices);
+            const maxP = Math.max(...prices);
+            setMinPriceLimit(Math.floor(minP * 0.9));
+            const newMax = Math.ceil(maxP * 1.1);
+            setMaxPriceLimit(newMax);
+            setMaxPrice(newMax);
+          }
+        }
       } catch (err) {
         console.error("Error fetching inventory cars:", err.message);
       } finally {
@@ -102,7 +142,7 @@ export default function Inventory() {
 
     fetchCars();
     fetchCategories();
-  }, []);
+  }, [language]);
 
   // Filter States
   const [searchQuery, setSearchQuery] = useState("");
@@ -111,16 +151,6 @@ export default function Inventory() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedBrand, setSelectedBrand] = useState("all");
   const [sortBy, setSortBy] = useState("newest");
-
-  const brandsList = [
-    { value: "all", label: "All Brands" },
-    { value: "Porsche", label: "Porsche" },
-    { value: "Audi", label: "Audi" },
-    { value: "BMW", label: "BMW" },
-    { value: "Land Rover", label: "Land Rover" },
-    { value: "Mercedes-Benz", label: "Mercedes-Benz" },
-    { value: "Tesla", label: "Tesla" },
-  ];
 
   // Read search parameters from URL on load
   useEffect(() => {
@@ -166,7 +196,21 @@ export default function Inventory() {
       // 5. Brand (Make)
       const matchesBrand = selectedBrand === "all" || car.marke === selectedBrand;
 
-      return matchesSearch && matchesCondition && matchesPrice && matchesCategory && matchesBrand;
+      // 6. Transmission
+      const matchesTransmission = selectedTransmission === "all" || 
+                                  car.transmission === selectedTransmission ||
+                                  (selectedTransmission === "Automatic" && car.transmission === "Automatique") ||
+                                  (selectedTransmission === "Manual" && car.transmission === "Manuelle");
+
+      // 7. Fuel Type
+      const matchesFuelType = selectedFuelType === "all" || 
+                              car.fuelType === selectedFuelType ||
+                              (selectedFuelType === "Gasoline" && car.fuelType === "Essence");
+
+      // 8. Year
+      const matchesYear = selectedYear === "all" || String(car.year) === selectedYear;
+
+      return matchesSearch && matchesCondition && matchesPrice && matchesCategory && matchesBrand && matchesTransmission && matchesFuelType && matchesYear;
     })
     .sort((a, b) => {
       if (sortBy === "price-asc") {
@@ -193,11 +237,29 @@ export default function Inventory() {
   const handleResetFilters = () => {
     setSearchQuery("");
     setSelectedConditions([]);
-    setMaxPrice(200000);
+    setMaxPrice(maxPriceLimit);
     setSelectedCategory("all");
+    setSelectedBrand("all");
+    setSelectedTransmission("all");
+    setSelectedFuelType("all");
+    setSelectedYear("all");
     setSortBy("newest");
     setSearchParams({});
   };
+
+  const transmissionsList = [
+    { value: "all", label: t("allTransmissions") },
+    { value: "Automatic", label: t("transmissionAuto") },
+    { value: "Manual", label: t("transmissionManual") }
+  ];
+
+  const fuelsList = [
+    { value: "all", label: t("allFuels") },
+    { value: "Gasoline", label: t("fuelGasoline") },
+    { value: "Diesel", label: t("fuelDiesel") },
+    { value: "Electric", label: t("fuelElectric") },
+    { value: "Hybrid", label: t("fuelHybrid") }
+  ];
 
 
 
@@ -263,7 +325,7 @@ export default function Inventory() {
 
             {/* Brand Filter dropdown */}
             <div className="space-y-2 border-b border-border-color pb-4">
-              <h3 className="font-label-bold text-xs text-[#ffb3af] uppercase tracking-wider font-semibold">{t("brandLabel")}</h3>
+              <h3 className="font-label-bold text-xs text-primary uppercase tracking-wider font-semibold">{t("brandLabel")}</h3>
               <select
                 value={selectedBrand}
                 onChange={(e) => setSelectedBrand(e.target.value)}
@@ -272,6 +334,54 @@ export default function Inventory() {
                 {brandsList.map((brand) => (
                   <option key={brand.value} value={brand.value} className="bg-bg-card text-text-main">
                     {brand.value === "all" ? t("allBrands") : brand.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Transmission Filter dropdown */}
+            <div className="space-y-2 border-b border-border-color pb-4">
+              <h3 className="font-label-bold text-xs text-primary uppercase tracking-wider font-semibold">{t("transmissionLabel") || "Transmission"}</h3>
+              <select
+                value={selectedTransmission}
+                onChange={(e) => setSelectedTransmission(e.target.value)}
+                className="w-full bg-bg-card border border-border-color text-sm text-text-main py-2.5 px-3 rounded-sm outline-none cursor-pointer"
+              >
+                {transmissionsList.map((tr) => (
+                  <option key={tr.value} value={tr.value} className="bg-bg-card text-text-main">
+                    {tr.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Fuel Type Filter dropdown */}
+            <div className="space-y-2 border-b border-border-color pb-4">
+              <h3 className="font-label-bold text-xs text-primary uppercase tracking-wider font-semibold">{t("fuelLabel") || "Fuel Type"}</h3>
+              <select
+                value={selectedFuelType}
+                onChange={(e) => setSelectedFuelType(e.target.value)}
+                className="w-full bg-bg-card border border-border-color text-sm text-text-main py-2.5 px-3 rounded-sm outline-none cursor-pointer"
+              >
+                {fuelsList.map((f) => (
+                  <option key={f.value} value={f.value} className="bg-bg-card text-text-main">
+                    {f.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Year Filter dropdown */}
+            <div className="space-y-2 border-b border-border-color pb-4">
+              <h3 className="font-label-bold text-xs text-primary uppercase tracking-wider font-semibold">{t("yearLabel") || "Year"}</h3>
+              <select
+                value={selectedYear}
+                onChange={(e) => setSelectedYear(e.target.value)}
+                className="w-full bg-bg-card border border-border-color text-sm text-text-main py-2.5 px-3 rounded-sm outline-none cursor-pointer"
+              >
+                {yearsList.map((yr) => (
+                  <option key={yr.value} value={yr.value} className="bg-bg-card text-text-main">
+                    {yr.value === "all" ? t("allYears") : yr.label}
                   </option>
                 ))}
               </select>
@@ -305,30 +415,30 @@ export default function Inventory() {
             {/* Price Slider */}
             <div className="space-y-3 border-b border-border-color pb-4">
               <div className="flex justify-between items-center">
-                <h3 className="font-label-bold text-xs text-[#ffb3af] uppercase tracking-wider font-semibold">{t("priceLabel")}</h3>
+                <h3 className="font-label-bold text-xs text-primary uppercase tracking-wider font-semibold">{t("priceLabel")}</h3>
                 <span className="text-xs font-semibold text-white bg-primary-container px-2 py-0.5 rounded-sm">
                   {formatPrice(maxPrice)}
                 </span>
               </div>
               <input 
                 type="range"
-                min="80000"
-                max="200000"
-                step="5000"
+                min={minPriceLimit}
+                max={maxPriceLimit}
+                step={maxPriceLimit > 10000 ? 5000 : 25}
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(Number(e.target.value))}
                 className="w-full h-1 bg-bg-card rounded-lg appearance-none cursor-pointer accent-primary-container"
               />
-              <div className="flex justify-between text-[10px] text-on-surface-variant">
-                <span>{formatPrice(80000)}</span>
-                <span>{formatPrice(200000)}</span>
+              <div className="flex justify-between text-[10px] text-text-muted">
+                <span>{formatPrice(minPriceLimit)}</span>
+                <span>{formatPrice(maxPriceLimit)}</span>
               </div>
             </div>
 
             {/* Reset Button */}
             <button 
               onClick={handleResetFilters}
-              className="w-full py-3 border border-white/20 font-label-bold text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all font-semibold rounded-sm cursor-pointer"
+              className="w-full py-3 border border-border-color text-text-main font-label-bold text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all font-semibold rounded-sm cursor-pointer"
             >
               {t("resetBtn")}
             </button>
