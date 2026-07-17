@@ -137,7 +137,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-12 flex justify-between items-end">
             <div>
-              <h2 className="font-headline-lg text-3xl uppercase font-bold text-white mb-2 tracking-wide">
+              <h2 className="font-headline-lg text-3xl uppercase font-bold text-text-main mb-2 tracking-wide">
                 {t("featuredInventory")}
               </h2>
               <div className="h-1 w-24 bg-primary-container"></div>
@@ -223,7 +223,7 @@ export default function Home() {
                           <span className="text-on-surface-variant/60 font-label-bold text-[10px] uppercase tracking-wider font-semibold">
                             {car.marke || (car.name ? car.name.split(" ")[1] : '')}
                           </span>
-                          <h4 className="font-headline-md text-lg font-bold text-white mt-1">
+                          <h4 className="font-headline-md text-lg font-bold text-text-main mt-1">
                             {car.model || (car.name ? car.name.split(" ").slice(2).join(" ") : 'Vehicle')}
                           </h4>
                         </div>
@@ -385,7 +385,7 @@ export default function Home() {
       <section className="py-24 bg-bg-card border-t border-border-color transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-headline-lg text-3xl uppercase font-bold text-white mb-4 tracking-wide">
+            <h2 className="font-headline-lg text-3xl uppercase font-bold text-text-main mb-4 tracking-wide">
               Client Testimonials
             </h2>
             <div className="h-1 w-24 bg-primary-container mx-auto"></div>
@@ -404,7 +404,7 @@ export default function Home() {
               <p className="mb-8 text-on-surface/80 text-sm leading-relaxed">
                 "The technical knowledge of the staff at Performance Auto is unparalleled. They didn't just sell me a car; they provided an engineering masterpiece tailored to my driving style."
               </p>
-              <div className="font-label-bold text-xs uppercase not-italic tracking-wider font-bold text-white">Alexander Vance</div>
+              <div className="font-label-bold text-xs uppercase not-italic tracking-wider font-bold text-text-main">Alexander Vance</div>
               <div className="text-[10px] text-on-surface-variant uppercase tracking-wider mt-1">Verified Owner</div>
             </div>
 
@@ -419,7 +419,7 @@ export default function Home() {
               <p className="mb-8 text-on-surface/80 text-sm leading-relaxed">
                 "The trade-in process was exceptionally transparent. I received a fair valuation and drove away in my new 911 within hours. A truly premium experience."
               </p>
-              <div className="font-label-bold text-xs uppercase not-italic tracking-wider font-bold text-white">Marcus Sterling</div>
+              <div className="font-label-bold text-xs uppercase not-italic tracking-wider font-bold text-text-main">Marcus Sterling</div>
               <div className="text-[10px] text-on-surface-variant uppercase tracking-wider mt-1">Collector</div>
             </div>
 
@@ -434,7 +434,7 @@ export default function Home() {
               <p className="mb-8 text-on-surface/80 text-sm leading-relaxed">
                 "Luxury and professionalism at its finest. From the initial inquiry to the final delivery, the team's attention to detail was absolutely flawless."
               </p>
-              <div className="font-label-bold text-xs uppercase not-italic tracking-wider font-bold text-white">Elena Rossi</div>
+              <div className="font-label-bold text-xs uppercase not-italic tracking-wider font-bold text-text-main">Elena Rossi</div>
               <div className="text-[10px] text-on-surface-variant uppercase tracking-wider mt-1">Repeat Client</div>
             </div>
 

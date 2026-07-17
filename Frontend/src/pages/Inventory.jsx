@@ -377,7 +377,7 @@ export default function Inventory() {
               <span className="material-symbols-outlined text-4xl text-text-muted/50 mb-3">
                 search_off
               </span>
-              <h3 className="text-lg font-bold text-white uppercase mb-2">{t("noResults")}</h3>
+              <h3 className="text-lg font-bold text-text-main uppercase mb-2">{t("noResults")}</h3>
             </div>
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -437,7 +437,7 @@ export default function Inventory() {
                           <span className="text-on-surface-variant/60 font-label-bold text-[10px] uppercase tracking-wider font-semibold">
                             {car.marke || (car.name ? car.name.split(" ")[1] : '')}
                           </span>
-                          <h3 className="font-headline-md text-lg font-bold text-white mt-1 italic">
+                          <h3 className="font-headline-md text-lg font-bold text-text-main mt-1 italic">
                             {car.model || (car.name ? car.name.split(" ").slice(2).join(" ") : 'Vehicle')}
                           </h3>
                         </div>

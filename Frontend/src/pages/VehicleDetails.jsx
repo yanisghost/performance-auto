@@ -469,31 +469,31 @@ export default function VehicleDetails() {
               <div className="border-t border-white/10 divide-y divide-white/10">
                 <div className="flex justify-between py-4">
                   <span className="font-label-bold text-xs text-on-surface-variant/80 uppercase font-semibold">Acceleration (0-60 MPH)</span>
-                  <span className="font-body-lg text-sm text-white font-medium">{car.specs?.acceleration || "N/A"}</span>
+                  <span className="font-body-lg text-sm text-text-main font-medium">{car.specs?.acceleration || "N/A"}</span>
                 </div>
                 <div className="flex justify-between py-4">
                   <span className="font-label-bold text-xs text-on-surface-variant/80 uppercase font-semibold">Top Speed</span>
-                  <span className="font-body-lg text-sm text-white font-medium">{car.specs?.topSpeed || "N/A"}</span>
+                  <span className="font-body-lg text-sm text-text-main font-medium">{car.specs?.topSpeed || "N/A"}</span>
                 </div>
                 <div className="flex justify-between py-4">
                   <span className="font-label-bold text-xs text-on-surface-variant/80 uppercase font-semibold">{t("hpLabel")}</span>
-                  <span className="font-body-lg text-sm text-white font-medium">{car.horsepower ? `${car.horsepower} hp` : (car.specs?.horsepower || "N/A")}</span>
+                  <span className="font-body-lg text-sm text-text-main font-medium">{car.horsepower ? `${car.horsepower} hp` : (car.specs?.horsepower || "N/A")}</span>
                 </div>
                 <div className="flex justify-between py-4">
                   <span className="font-label-bold text-xs text-on-surface-variant/80 uppercase font-semibold">{t("transLabel")}</span>
-                  <span className="font-body-lg text-sm text-white font-medium">
+                  <span className="font-body-lg text-sm text-text-main font-medium">
                     {car.transmission === "Manual" || car.transmission === "Manuelle" ? t("transmissionManual") : t("transmissionAuto")}
                   </span>
                 </div>
                 <div className="flex justify-between py-4">
                   <span className="font-label-bold text-xs text-on-surface-variant/80 uppercase font-semibold">{t("fuelLabel")}</span>
-                  <span className="font-body-lg text-sm text-white font-medium">
+                  <span className="font-body-lg text-sm text-text-main font-medium">
                     {car.fuelType === "Diesel" ? t("fuelDiesel") : (car.fuelType === "Essence" || car.fuelType === "Gasoline" ? t("fuelGasoline") : car.fuelType)}
                   </span>
                 </div>
                 <div className="flex justify-between py-4">
                   <span className="font-label-bold text-xs text-on-surface-variant/80 uppercase font-semibold">{t("paintLabel")}</span>
-                  <span className="font-body-lg text-sm text-white font-medium">
+                  <span className="font-body-lg text-sm text-text-main font-medium">
                     {car.repaintOption === "No" || car.repaintOption === "Non" ? t("paintNo") : t("paintYes")}
                   </span>
                 </div>
@@ -537,12 +537,12 @@ export default function VehicleDetails() {
 
               {/* Loan Estimator */}
               <div className="space-y-6">
-                <h4 className="font-label-bold text-xs text-white uppercase tracking-wider font-semibold">{t("financeEstimator")}</h4>
+                <h4 className="font-label-bold text-xs text-text-main uppercase tracking-wider font-semibold">{t("financeEstimator")}</h4>
                 <div className="space-y-4">
                   <div>
                     <div className="flex justify-between mb-2">
                       <span className="text-[10px] text-on-surface-variant/80 font-label-bold uppercase font-semibold">{t("downPayment")}</span>
-                      <span className="text-white text-xs font-semibold">{formatPrice(downPayment, car.price)}</span>
+                      <span className="text-text-main text-xs font-semibold">{formatPrice(downPayment, car.price)}</span>
                     </div>
                     <input 
                       type="range"
@@ -653,7 +653,7 @@ export default function VehicleDetails() {
                     )}
                   </div>
                   <div className="p-6">
-                    <h4 className="font-headline-md text-base font-bold text-white uppercase">
+                    <h4 className="font-headline-md text-base font-bold text-text-main uppercase">
                       {related.name || `${related.marke} ${related.model} ${related.year}`}
                     </h4>
                     <p className="text-[#ffb3af] font-headline-md text-sm font-bold mt-2 flex flex-wrap items-center gap-x-2">
