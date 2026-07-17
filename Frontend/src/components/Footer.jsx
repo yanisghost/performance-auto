@@ -5,7 +5,7 @@ export default function Footer() {
   const { t } = useTranslation();
 
   return (
-    <footer className="w-full bg-[#0c0f0f] border-t border-white/5 pt-16 pb-8">
+    <footer className="w-full bg-bg-header border-t border-border-color pt-16 pb-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
         
         {/* Brand Column */}
@@ -89,7 +89,7 @@ export default function Footer() {
           </p>
           <form className="flex flex-col gap-3" onSubmit={(e) => e.preventDefault()}>
             <input 
-              className="bg-[#1e2020] text-white border-b border-white/20 focus:border-primary-container focus:ring-0 px-3 py-2 text-sm placeholder:text-on-surface-variant/40 outline-none rounded-sm" 
+              className="bg-bg-card text-text-main border border-border-color focus:border-primary-container focus:ring-0 px-3 py-2 text-sm placeholder:text-text-muted/40 outline-none rounded-sm" 
               placeholder="Email Address" 
               type="email"
               required
@@ -99,7 +99,7 @@ export default function Footer() {
             </button>
           </form>
           {/* Decorative Map Box */}
-          <div className="mt-4 h-24 w-full matte-card overflow-hidden rounded-sm relative flex items-center justify-center bg-[#151717]">
+          <div className="mt-4 h-24 w-full matte-card overflow-hidden rounded-sm relative flex items-center justify-center bg-bg-main">
             <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: "url('https://maps.googleapis.com/maps/api/staticmap?center=Algiers&zoom=11&size=300x100&sensor=false&key=')" }}></div>
             <span className="relative z-10 text-xs font-label-bold uppercase tracking-wider text-on-surface/60">{t("footerAddress").split(",")[1] || "Algiers Showroom"}</span>
           </div>
@@ -108,7 +108,7 @@ export default function Footer() {
       </div>
 
       {/* Sub-footer */}
-      <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-border-color flex flex-col md:flex-row justify-between items-center gap-4 transition-colors duration-300">
         <p className="text-on-surface-variant text-xs">
           {t("copyright")}
         </p>
