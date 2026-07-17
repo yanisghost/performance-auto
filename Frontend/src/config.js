@@ -1,8 +1,10 @@
-export const API_BASE_URL = 'http://localhost:3000/api/v1';
+export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1';
 
 export const getMediaUrl = (filename, type = 'image') => {
   if (!filename) return '';
   if (filename.startsWith('http') || filename.startsWith('data:')) return filename;
+  
+  const baseUrl = API_BASE_URL.replace('/api/v1', '');
   
   let folder;
   if (type === 'video') {
@@ -12,7 +14,7 @@ export const getMediaUrl = (filename, type = 'image') => {
   } else {
     folder = 'img/products';
   }
-  return `http://localhost:3000/${folder}/${filename}`;
+  return `${baseUrl}/${folder}/${filename}`;
 };
 
 export const formatPrice = (value, carPrice = null) => {
