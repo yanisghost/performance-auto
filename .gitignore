@@ -1,0 +1,38 @@
+# Node dependencies
+node_modules/
+**/node_modules/
+
+# Local configuration files (secrets/credentials)
+*.env
+config.env
+**/config.env
+
+# Build outputs
+dist/
+**/dist/
+build/
+**/build/
+
+# IDE files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test scripts
+verify_find_error.js
+verify_populate.js
+fetch_error_log.js
+verify_model.js
+fetch_products.js
+inspect_db.js
+inspect_pb.js
+mcp_client.js
+stdio_mcp_client.js

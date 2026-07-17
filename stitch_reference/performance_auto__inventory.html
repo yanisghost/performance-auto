@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Inventory | PERFORMANCE AUTO</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#e2e2e2",
+                    "on-primary-fixed-variant": "#930018",
+                    "on-tertiary-fixed-variant": "#474746",
+                    "on-secondary": "#313030",
+                    "error": "#ffb4ab",
+                    "tertiary": "#c8c6c5",
+                    "on-primary-fixed": "#410005",
+                    "on-background": "#e2e2e2",
+                    "secondary-fixed": "#e5e2e1",
+                    "tertiary-container": "#6d6c6c",
+                    "on-error": "#690005",
+                    "surface-container": "#1e2020",
+                    "secondary-container": "#4a4949",
+                    "surface-container-lowest": "#0c0f0f",
+                    "tertiary-fixed-dim": "#c8c6c5",
+                    "on-tertiary-container": "#f1eeee",
+                    "surface-container-highest": "#333535",
+                    "outline-variant": "#5d3f3d",
+                    "inverse-on-surface": "#2f3131",
+                    "on-tertiary": "#303030",
+                    "primary-fixed": "#ffdad7",
+                    "on-surface-variant": "#e7bcba",
+                    "surface-dim": "#121414",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "primary-fixed-dim": "#ffb3af",
+                    "tertiary-fixed": "#e5e2e1",
+                    "on-primary-container": "#ffeae8",
+                    "on-primary": "#68000e",
+                    "secondary": "#c8c6c5",
+                    "primary": "#ffb3af",
+                    "surface-variant": "#333535",
+                    "outline": "#ae8885",
+                    "surface": "#121414",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-low": "#1a1c1c",
+                    "background": "#121414",
+                    "surface-container-high": "#282a2b",
+                    "on-secondary-container": "#bab8b7",
+                    "inverse-surface": "#e2e2e2",
+                    "inverse-primary": "#bf0022",
+                    "on-secondary-fixed-variant": "#474646",
+                    "error-container": "#93000a",
+                    "primary-container": "#d90429",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "surface-bright": "#37393a",
+                    "surface-tint": "#ffb3af",
+                    "on-tertiary-fixed": "#1b1b1c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "grid-margin": "24px",
+                    "grid-gutter": "24px",
+                    "section-gap-desktop": "120px",
+                    "base": "8px",
+                    "container-max-width": "1440px",
+                    "section-gap-mobile": "64px"
+            },
+            "fontFamily": {
+                    "label-bold": ["Inter"],
+                    "caption": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "display-lg": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"]
+            },
+            "fontSize": {
+                    "label-bold": ["14px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #0F0F0F;
+            color: #E2E2E2;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .luxury-gradient-overlay {
+            background: linear-gradient(0deg, rgba(15,15,15,1) 0%, rgba(15,15,15,0.7) 50%, rgba(15,15,15,0) 100%);
+        }
+        .car-card-hover:hover .car-image {
+            transform: scale(1.05);
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: #d90429;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background">
+<!-- TOP NAV BAR -->
+<header class="w-full top-0 sticky z-50 border-b border-white/10 bg-surface">
+<nav class="flex justify-between items-center px-grid-margin py-4 max-w-container-max-width mx-auto">
+<div class="font-headline-md text-primary tracking-tighter">PERFORMANCE AUTO</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-bold text-label-bold uppercase tracking-widest text-primary border-b-2 border-primary pb-1" href="#">Models</a>
+<a class="font-label-bold text-label-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors" href="#">Pre-Owned</a>
+<a class="font-label-bold text-label-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors" href="#">Performance</a>
+<a class="font-label-bold text-label-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors" href="#">Heritage</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-on-surface hover:scale-105 transition-transform">search</button>
+<button class="bg-primary-container text-on-primary-container font-label-bold text-label-bold uppercase py-3 px-8 hover:scale-105 transition-transform duration-300">
+                    Build &amp; Price
+                </button>
+</div>
+</nav>
+</header>
+<!-- HERO SECTION -->
+<section class="relative h-[409px] min-h-[300px] flex items-end pb-12 overflow-hidden">
+
+<div class="absolute inset-0 luxury-gradient-overlay"></div>
+<div class="relative w-full max-w-container-max-width mx-auto px-grid-margin">
+<h1 class="font-display-lg text-display-lg uppercase italic tracking-tighter">Our Inventory</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mt-4">Precision engineered, hand-selected, and ready for the track or the grand tour. Explore the ultimate collection of performance vehicles.</p>
+</div>
+</section>
+<!-- MAIN CONTENT AREA WITH SIDEBAR -->
+<main class="max-w-container-max-width mx-auto px-grid-margin py-12 flex flex-col md:flex-row gap-grid-gutter">
+<!-- SIDEBAR FILTERS -->
+<aside class="w-full md:w-64 flex-shrink-0">
+<div class="h-auto sticky top-24 space-y-8">
+<div>
+<h2 class="font-headline-md text-primary uppercase mb-1">Inventory Filters</h2>
+<p class="font-caption text-caption text-on-surface-variant uppercase mb-6">Precision Search</p>
+</div>
+<!-- Search Input -->
+<div class="space-y-4">
+<div class="relative">
+<input class="w-full bg-surface-container border-b border-white/20 py-3 px-0 focus:border-primary-container focus:ring-0 text-on-surface font-body-md outline-none transition-all" placeholder="Search keyword..." type="text"/>
+<span class="material-symbols-outlined absolute right-0 top-3 text-on-surface-variant">search</span>
+</div>
+<!-- Category Filter -->
+<div class="space-y-2 py-4 border-b border-white/5">
+<h3 class="font-label-bold text-label-bold text-primary uppercase">Condition</h3>
+<div class="space-y-2 mt-4">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 bg-surface-container border-white/20 rounded text-primary-container focus:ring-offset-background" type="checkbox"/>
+<span class="font-body-md text-on-surface group-hover:text-primary transition-colors">New Vehicles</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 bg-surface-container border-white/20 rounded text-primary-container focus:ring-offset-background" type="checkbox"/>
+<span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Pre-Owned</span>
+</label>
+</div>
+</div>
+<!-- Price Range -->
+<div class="space-y-4 py-4 border-b border-white/5">
+<div class="flex justify-between items-center">
+<h3 class="font-label-bold text-label-bold text-primary uppercase">Price Range</h3>
+<span class="text-caption font-caption text-on-surface-variant">$150k+</span>
+</div>
+<input class="w-full h-1 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary-container" max="500000" min="50000" step="5000" type="range"/>
+</div>
+<!-- Brand Selection -->
+<div class="space-y-2 py-4 border-b border-white/5">
+<h3 class="font-label-bold text-label-bold text-primary uppercase">Engine Type</h3>
+<div class="flex flex-wrap gap-2 mt-4">
+<button class="bg-primary-container text-on-primary-container rounded-lg p-3 flex items-center gap-3 text-label-bold font-label-bold uppercase transition-all">
+<span class="material-symbols-outlined">speed</span> V12
+                            </button>
+<button class="text-on-surface-variant p-3 flex items-center gap-3 hover:bg-surface-container-highest rounded-lg transition-all text-label-bold font-label-bold uppercase">
+<span class="material-symbols-outlined">bolt</span> Electric
+                            </button>
+<button class="text-on-surface-variant p-3 flex items-center gap-3 hover:bg-surface-container-highest rounded-lg transition-all text-label-bold font-label-bold uppercase">
+<span class="material-symbols-outlined">auto_transmission</span> V8 Hybrid
+                            </button>
+</div>
+</div>
+</div>
+<button class="w-full py-4 border border-white/20 font-label-bold text-label-bold uppercase hover:bg-white/5 transition-all">
+                    Reset Filters
+                </button>
+</div>
+</aside>
+<!-- RESULTS GRID -->
+<section class="flex-1">
+<!-- Sorting Header -->
+<div class="flex flex-col md:flex-row justify-between items-center mb-10 pb-6 border-b border-white/10 gap-4">
+<span class="font-body-md text-on-surface-variant">Showing <span class="text-on-surface font-bold">12</span> Precision Vehicles</span>
+<div class="flex items-center gap-4">
+<span class="font-label-bold text-label-bold uppercase text-on-surface-variant">Sort By:</span>
+<select class="bg-surface-container border-none text-on-surface font-label-bold uppercase py-2 pl-4 pr-10 rounded-lg focus:ring-1 focus:ring-primary-container">
+<option>Newest Arrivals</option>
+<option>Price: High to Low</option>
+<option>Price: Low to High</option>
+<option>Performance Specs</option>
+</select>
+</div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+<!-- Vehicle Card 1 -->
+<div class="bg-surface-container border border-white/10 overflow-hidden group car-card-hover transition-all duration-300">
+<div class="relative h-64 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center car-image transition-transform duration-700" data-alt="A side profile of a sleek, matte black modern supercar with Performance Red brake calipers, parked in a minimalist concrete architectural space with high-contrast cinematic lighting. The atmosphere is luxurious and technologically advanced, with soft reflections on the car's aerodynamic curves." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDARqxKss-DApPAtAQ6bZvvJ0xPXstTFPHbM-lg5Qi8vhFpFK3ceFbMSNSry4aY7jIJMdsP3kynn_rjcHyYQ_RpZB6cQ8LMIYnaH4EyiuU5zbrgpJVb-pGfJnzV5j6CPS3GYfuVEZnnDwbeSfeT6ueyZrQZ_Ks-90uygCOfHrOVqzj3Oim-9AzJQFOJtOt0DhxGvzWTd2CC1-Mb8116mn5EXbnzmtOP5zZN28b3MdNxtnIahvFdy8x2og')"></div>
+<div class="absolute top-4 left-4 bg-primary-container text-white px-3 py-1 font-label-bold text-[10px] tracking-widest uppercase">New</div>
+<button class="absolute top-4 right-4 bg-black/40 backdrop-blur-md p-2 rounded-full hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-white text-lg">favorite</span>
+</button>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-on-surface uppercase italic">2024 VANGUARD S-ULTRA</h3>
+<span class="font-label-bold text-headline-md text-primary">$385,000</span>
+</div>
+<div class="grid grid-cols-2 gap-y-3 mt-6 pb-6 border-b border-white/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">speed</span>
+<span class="font-body-md text-on-surface-variant">0-60 in 2.4s</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">auto_transmission</span>
+<span class="font-body-md text-on-surface-variant">8-Speed Dual</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">settings_input_component</span>
+<span class="font-body-md text-on-surface-variant">V12 Twin-Turbo</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">distance</span>
+<span class="font-body-md text-on-surface-variant">12 Miles</span>
+</div>
+</div>
+<div class="mt-6 flex gap-4">
+<button class="flex-1 bg-primary-container text-on-primary-container font-label-bold text-label-bold uppercase py-4 hover:scale-[1.02] transition-transform">
+                                View Details
+                            </button>
+<button class="p-4 border border-white/10 hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">sync_alt</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Vehicle Card 2 -->
+<div class="bg-surface-container border border-white/10 overflow-hidden group car-card-hover transition-all duration-300">
+<div class="relative h-64 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center car-image transition-transform duration-700" data-alt="A front three-quarter view of a metallic silver grand tourer luxury car on a coastal highway at dusk. The warm glow of the setting sun highlights the elegant body lines and large alloy wheels. The scene captures a mood of exclusive travel and high-end automotive heritage." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBcfnOKUSonursRioGIsMEqkMGJ56T96b-GzaparVSCmDIIHlhm44cbW3SVUVZF131v9XykVauNur3qSJnDISvmjRa6Ghx7U-ZuGuwfKggmZ9q2aegyfovY8JwPqIdHsFk13VEQ-8zsK_ofJKmSKTDy1bcrZDa64UC7F02t_rJcemftpJ7sr5rFoMhHjbMJkXgO9eTQc3c5sltkP4uZedr3daNcFpSPktOBt1XIITfqW4f0pd200whsew')"></div>
+<div class="absolute top-4 left-4 bg-secondary-container text-on-surface-variant px-3 py-1 font-label-bold text-[10px] tracking-widest uppercase">Pre-Owned</div>
+<button class="absolute top-4 right-4 bg-black/40 backdrop-blur-md p-2 rounded-full hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-white text-lg">favorite</span>
+</button>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-on-surface uppercase italic">2022 APEX GT-8</h3>
+<span class="font-label-bold text-headline-md text-primary">$215,000</span>
+</div>
+<div class="grid grid-cols-2 gap-y-3 mt-6 pb-6 border-b border-white/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">speed</span>
+<span class="font-body-md text-on-surface-variant">0-60 in 3.1s</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">auto_transmission</span>
+<span class="font-body-md text-on-surface-variant">7-Speed Auto</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">settings_input_component</span>
+<span class="font-body-md text-on-surface-variant">V8 Naturally Asp.</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">distance</span>
+<span class="font-body-md text-on-surface-variant">8,420 Miles</span>
+</div>
+</div>
+<div class="mt-6 flex gap-4">
+<button class="flex-1 bg-primary-container text-on-primary-container font-label-bold text-label-bold uppercase py-4 hover:scale-[1.02] transition-transform">
+                                View Details
+                            </button>
+<button class="p-4 border border-white/10 hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">sync_alt</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Vehicle Card 3 -->
+<div class="bg-surface-container border border-white/10 overflow-hidden group car-card-hover transition-all duration-300">
+<div class="relative h-64 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center car-image transition-transform duration-700" data-alt="Close up high-angle shot of a vibrant electric blue performance sedan parked in a futuristic urban garage with neon light accents and dark reflective floors. The lighting highlights the aggressive aerodynamics and carbon fiber detailing of the vehicle's hood and grille." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBK-yDMGFdf6CKLb3iihafZx3HTATvz8AbD1iMiAeRypZ2leQAxfS7moP4zZUwjl_DYFke1tBfm59sy4AiJ57Sc3RKiGGNyA24PnyPlp1a4lGsoKbmrUvA38KTN6dZVM1dt4EAt6TMezROuRH5EvDFhdaiMkV5-5D0QLi9f6FUgK5ljQG9SnBbe7xF_UNkhPuWF8Fv-Vc-Friu93XEOuY4H1RVa2smu-rvheQYlLaUXctgdMdY0vKShSw')"></div>
+<div class="absolute top-4 left-4 bg-primary-container text-white px-3 py-1 font-label-bold text-[10px] tracking-widest uppercase">New</div>
+<button class="absolute top-4 right-4 bg-black/40 backdrop-blur-md p-2 rounded-full hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-white text-lg">favorite</span>
+</button>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-on-surface uppercase italic">2024 ION CROSS-P</h3>
+<span class="font-label-bold text-headline-md text-primary">$189,500</span>
+</div>
+<div class="grid grid-cols-2 gap-y-3 mt-6 pb-6 border-b border-white/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">bolt</span>
+<span class="font-body-md text-on-surface-variant">Electric - 800HP</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">speed</span>
+<span class="font-body-md text-on-surface-variant">0-60 in 2.1s</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">battery_charging_full</span>
+<span class="font-body-md text-on-surface-variant">320 Mile Range</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">distance</span>
+<span class="font-body-md text-on-surface-variant">0 Miles</span>
+</div>
+</div>
+<div class="mt-6 flex gap-4">
+<button class="flex-1 bg-primary-container text-on-primary-container font-label-bold text-label-bold uppercase py-4 hover:scale-[1.02] transition-transform">
+                                View Details
+                            </button>
+<button class="p-4 border border-white/10 hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">sync_alt</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Vehicle Card 4 -->
+<div class="bg-surface-container border border-white/10 overflow-hidden group car-card-hover transition-all duration-300">
+<div class="relative h-64 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center car-image transition-transform duration-700" data-alt="Rear view of a classic red sports car from the 1970s, perfectly restored with gleaming chrome exhaust and rounded tail lights. The car is showcased in a high-end showroom with dark wood floors and soft, focused spotlights that create a nostalgic yet premium luxury feel." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD4xVd1NUKlHCXvtPOdsmIbz8uZ931Rh4UShECR219hiq9xvzkMXp2n__AzvpV8hHamOjgBUTQWZqjvsEluad7nqmZ5e0NH8229-cmZ_fEhrsmYw5q4vKZUsJ0y7NxEpY-h2jjU1ssnAWibjqWOnxpN2qQ-ZcVJ4dDXmZgUexeKm0zHdHpsybXlSpcgPQKePJ3NfszlVWK11VgjbmgMiss34ry1uiT0GIZeD_d7wjm57GWNIIYryTistQ')"></div>
+<div class="absolute top-4 left-4 bg-secondary-container text-on-surface-variant px-3 py-1 font-label-bold text-[10px] tracking-widest uppercase">Classic</div>
+<button class="absolute top-4 right-4 bg-black/40 backdrop-blur-md p-2 rounded-full hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-white text-lg">favorite</span>
+</button>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-on-surface uppercase italic">1974 HERITAGE SE</h3>
+<span class="font-label-bold text-headline-md text-primary">$295,000</span>
+</div>
+<div class="grid grid-cols-2 gap-y-3 mt-6 pb-6 border-b border-white/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">history</span>
+<span class="font-body-md text-on-surface-variant">Matching Numbers</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">auto_transmission</span>
+<span class="font-body-md text-on-surface-variant">Manual 5-Speed</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">settings_input_component</span>
+<span class="font-body-md text-on-surface-variant">Boxer-6 Air</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">distance</span>
+<span class="font-body-md text-on-surface-variant">42,300 Miles</span>
+</div>
+</div>
+<div class="mt-6 flex gap-4">
+<button class="flex-1 bg-primary-container text-on-primary-container font-label-bold text-label-bold uppercase py-4 hover:scale-[1.02] transition-transform">
+                                View Details
+                            </button>
+<button class="p-4 border border-white/10 hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">sync_alt</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- PAGINATION -->
+<div class="mt-16 flex justify-center items-center gap-4">
+<button class="w-12 h-12 flex items-center justify-center border border-white/10 hover:bg-primary-container hover:text-white transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center bg-primary-container text-white font-label-bold">1</button>
+<button class="w-12 h-12 flex items-center justify-center border border-white/10 hover:bg-white/5 transition-all font-label-bold">2</button>
+<button class="w-12 h-12 flex items-center justify-center border border-white/10 hover:bg-white/5 transition-all font-label-bold">3</button>
+<span class="text-on-surface-variant mx-2">...</span>
+<button class="w-12 h-12 flex items-center justify-center border border-white/10 hover:bg-white/5 transition-all font-label-bold">12</button>
+<button class="w-12 h-12 flex items-center justify-center border border-white/10 hover:bg-primary-container hover:text-white transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</section>
+</main>
+<!-- FOOTER -->
+<footer class="w-full py-12 bg-surface-container-lowest border-t border-white/10">
+<div class="flex flex-col items-center justify-center space-y-6 px-grid-margin max-w-container-max-width mx-auto">
+<div class="font-headline-md text-primary">PERFORMANCE AUTO</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-caption text-caption uppercase tracking-wider text-on-surface-variant hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="font-caption text-caption uppercase tracking-wider text-on-surface-variant hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="font-caption text-caption uppercase tracking-wider text-on-surface-variant hover:text-white transition-colors" href="#">Service Centers</a>
+<a class="font-caption text-caption uppercase tracking-wider text-on-surface-variant hover:text-white transition-colors" href="#">Contact</a>
+</div>
+<div class="pt-8 text-center">
+<p class="font-caption text-caption uppercase tracking-wider text-on-surface-variant">© 2024 PERFORMANCE AUTO. ENGINEERED FOR PRECISION.</p>
+</div>
+<div class="flex gap-6 pt-4">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">mail</span></a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('opacity-80', 'scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('opacity-80', 'scale-95');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('opacity-80', 'scale-95');
+            });
+        });
+
+        // Filter sticky behavior check
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-2xl', 'bg-opacity-95');
+            } else {
+                header.classList.remove('shadow-2xl', 'bg-opacity-95');
+            }
+        });
+    </script>
+</body></html>

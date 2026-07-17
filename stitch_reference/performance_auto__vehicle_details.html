@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>2024 PERFORMANCE AUTO | GT3 Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #0F0F0F;
+            color: #e2e2e2;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for dark matte feel */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0c0f0f; }
+        ::-webkit-scrollbar-thumb { background: #333535; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ffb3af; }
+
+        .performance-gradient {
+            background: linear-gradient(180deg, rgba(15,15,15,0) 0%, rgba(15,15,15,0.8) 100%);
+        }
+        
+        input[type=range] {
+            accent-color: #d90429;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#282a2b",
+                    "surface-container-lowest": "#0c0f0f",
+                    "surface-container": "#1e2020",
+                    "primary-fixed-dim": "#ffb3af",
+                    "primary": "#ffb3af",
+                    "on-primary-fixed": "#410005",
+                    "tertiary-container": "#6d6c6c",
+                    "on-primary-container": "#ffeae8",
+                    "tertiary": "#c8c6c5",
+                    "surface-variant": "#333535",
+                    "outline-variant": "#5d3f3d",
+                    "on-tertiary-fixed": "#1b1b1c",
+                    "on-secondary-fixed-variant": "#474646",
+                    "on-primary": "#68000e",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-surface": "#e2e2e2",
+                    "on-tertiary-fixed-variant": "#474746",
+                    "on-secondary-container": "#bab8b7",
+                    "on-tertiary-container": "#f1eeee",
+                    "inverse-surface": "#e2e2e2",
+                    "surface-tint": "#ffb3af",
+                    "background": "#121414",
+                    "tertiary-fixed-dim": "#c8c6c5",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-primary-fixed-variant": "#930018",
+                    "error": "#ffb4ab",
+                    "primary-fixed": "#ffdad7",
+                    "on-error-container": "#ffdad6",
+                    "tertiary-fixed": "#e5e2e1",
+                    "surface-dim": "#121414",
+                    "primary-container": "#d90429",
+                    "surface-container-highest": "#333535",
+                    "surface-bright": "#37393a",
+                    "on-error": "#690005",
+                    "secondary-fixed": "#e5e2e1",
+                    "outline": "#ae8885",
+                    "secondary": "#c8c6c5",
+                    "on-surface-variant": "#e7bcba",
+                    "on-background": "#e2e2e2",
+                    "surface-container-low": "#1a1c1c",
+                    "error-container": "#93000a",
+                    "surface": "#121414",
+                    "inverse-primary": "#bf0022",
+                    "secondary-container": "#4a4949",
+                    "on-secondary": "#313030",
+                    "on-tertiary": "#303030",
+                    "inverse-on-surface": "#2f3131"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-gap-mobile": "64px",
+                    "grid-margin": "24px",
+                    "section-gap-desktop": "120px",
+                    "grid-gutter": "24px",
+                    "container-max-width": "1440px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "caption": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Montserrat"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "display-lg": ["Montserrat"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "label-bold": ["14px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary-container selection:text-white">
+<!-- TopNavBar Shell -->
+<header class="w-full top-0 bg-surface dark:bg-surface border-b border-white/10 z-50 sticky">
+<div class="flex justify-between items-center px-grid-margin py-4 w-full max-w-container-max-width mx-auto">
+<a class="text-headline-md font-headline-md font-bold tracking-tighter text-on-surface dark:text-on-surface" href="#">PERFORMANCE AUTO</a>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="font-label-bold text-label-bold text-primary border-b-2 border-primary pb-1" href="#">Models</a>
+<a class="font-label-bold text-label-bold text-on-surface-variant hover:text-on-surface transition-colors" href="#">Pre-Owned</a>
+<a class="font-label-bold text-label-bold text-on-surface-variant hover:text-on-surface transition-colors" href="#">Heritage</a>
+<a class="font-label-bold text-label-bold text-on-surface-variant hover:text-on-surface transition-colors" href="#">Racing</a>
+</nav>
+<div class="flex items-center gap-6">
+<button class="hidden lg:block bg-primary-container hover:scale-105 transition-transform duration-200 text-white font-label-bold text-label-bold px-6 py-2 uppercase">Test Drive</button>
+<button class="material-symbols-outlined text-on-surface">menu</button>
+</div>
+</div>
+</header>
+<main class="max-w-container-max-width mx-auto px-grid-margin py-base lg:py-12">
+<!-- Header Section -->
+<section class="mb-10">
+<div class="flex flex-col md:flex-row justify-between items-end gap-6">
+<div>
+<span class="text-primary font-label-bold text-label-bold uppercase tracking-widest">2024 High-Performance Series</span>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mt-2 mb-1">PORSCHE 911 GT3</h1>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<span class="font-body-md text-body-md">New Inventory</span>
+<span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
+<span class="font-body-md text-body-md">Stock: #GT3-2024-SB</span>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-bold text-label-bold text-on-surface-variant mb-1">MSRP STARTING AT</p>
+<p class="font-display-lg text-display-lg-mobile md:text-headline-lg text-primary">$182,900</p>
+</div>
+</div>
+</section>
+<!-- Main Gallery + Action Sidebar Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-grid-gutter mb-section-gap-mobile lg:mb-section-gap-desktop">
+<!-- Left Column: Media & Info -->
+<div class="lg:col-span-8 space-y-12">
+<!-- Main Gallery -->
+<div class="space-y-4">
+<div class="relative aspect-[16/9] w-full overflow-hidden border border-white/10 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A professional, cinematic automotive photograph of a 2024 Porsche 911 GT3 in Shark Blue. The car is positioned diagonally in a high-tech, minimalist studio with dark matte gray floors and dramatic overhead panel lighting. The lighting highlights the aggressive rear wing and aerodynamic lines. The image is clean, sharp, and conveys extreme luxury and speed within a dark mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw15q0Z_HJCrdyfWkhn74y7nLLaXkZAWhSdBXXbvZZxzcpXo2tWHgKWjCROoKc8fx5daKxGRDy6MaQ4-uFSlh-N09oyUyP-QnJ-Mvigc9f0fcKE1UJgCLCDCWn6-pfTosMZ_htcWRh1P1-fSKpGD-3FgXadkpC1185n_C7Iw6xGPheMNM-wN1l0021ROCEvRV3DRW7xxS5HiN5Z7LzNgPUcaQtAsDQqBsf9aEB0cGvApS6XDr5tp19Og"/>
+<div class="absolute bottom-6 left-6 bg-black/60 backdrop-blur-md px-4 py-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-white text-sm">photo_camera</span>
+<span class="font-label-bold text-label-bold text-white">1 / 24</span>
+</div>
+</div>
+<div class="grid grid-cols-4 md:grid-cols-6 gap-2">
+<div class="aspect-square border-2 border-primary overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover opacity-100" data-alt="Close-up detail shot of a Porsche 911 GT3 Shark Blue hood and carbon fiber vents. The lighting is soft and moody, highlighting the texture of the paint and the technical weave of the carbon fiber." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4WSn3lATM9cGip48H6MPLPeG7mpaFErDH79NepeX7S_9we7bd8q6f8KrWJbPFm2AFhdfOm1loITSA5L07-ZZ_yEY8CS_rO9l10vBq48i1_2wK8UAhz4zhMTj8rymtgibuNdQh-IDRq63CZFZ-muGJkQY-WUF5zZflVnZ8tV6SxL6hv6jI5thBKO5Q35FG3tyPv3Gc3ICAwyBW_jGrXjc9urm9lFe1ohFxUGXAKGq-GzlaDkgGkm8u0A"/>
+</div>
+<div class="aspect-square border border-white/10 overflow-hidden cursor-pointer hover:border-primary/50 transition-colors">
+<img class="w-full h-full object-cover opacity-60 hover:opacity-100 transition-opacity" data-alt="Rear profile view of the 2024 Porsche 911 GT3 showing the massive swan-neck rear wing and sleek LED taillight strip in a dark, atmospheric garage setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCzp9jjPI36-XhA7SIVZN9S_3Q7Mq_JcLhiV6LoFMeipU7FHqjzuGtHLOJxgtxaFYRb4-gpIGmLjeHmur7Jjd9OSdGJBYzFv3r-fVr3qTq04qNmle-bv_tl8cDMPXgDG1JLQIn5TVDyCFu86zOGqMpcIBxN29NBkByUtpYif8vEgDlZPwj3oJy0cU5_4HBYJfuhx7rKqt288oSrFIiflHuajIzDxoUOPN4YoNO40hnVJChV2Tb_c3qRw"/>
+</div>
+<div class="aspect-square border border-white/10 overflow-hidden cursor-pointer hover:border-primary/50 transition-colors">
+<img class="w-full h-full object-cover opacity-60 hover:opacity-100 transition-opacity" data-alt="Interior driver-focused cockpit of a Porsche 911 GT3 with Alcantara racing seats, red stitching, and a digital instrument cluster glowing in the dark cabin." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvxImD9BdMCKUJfevR4dz3-l7QkJqOO_eug339FtznuVDNtA586YnAda6VOjNktdDY7ygvCAKzZbCeZz5YUBTY9K8VKHhZ0smnfGoG5xk31i5XRX2p5mruosSsZMRt1oo17E4dfjq1v9A9cQ8QpRDIC6asG0wXFHHeL58UQ58Rp3kDh1EEiirXLhSljX_3No2hZOxJrVQqDkUDanWeQqspngfTc29CkQD_bNRbtogfMnJH3PuB7v1w_A"/>
+</div>
+<div class="aspect-square border border-white/10 overflow-hidden cursor-pointer hover:border-primary/50 transition-colors">
+<img class="w-full h-full object-cover opacity-60 hover:opacity-100 transition-opacity" data-alt="Close-up of the center-lock wheels and yellow brake calipers on a Shark Blue Porsche 911 GT3, shot with high contrast and shallow depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa_UQo6WygSF8EMzDoHJa6RUt61bhxEfGGPgznmTq4n0hFcCVa3Z2YKbqEMRHEpHWytXOdaG6LxKkX4fU3jI9t2l_DC6BaN3A_LgU2Nx177agkIcpd7U7wdwEHX9XcjP9j_rNh1FYjED-0xGl9ctntkmdUQrgI8Ai8unSgn2t5nkbZWKBbIVC0Hsnjs-nnmwPUUkJ58T5-YG6Njgu4_vmHiYDRBj3HY8EfPwfAvg-_lT3xGM65y454lg"/>
+</div>
+<div class="aspect-square border border-white/10 overflow-hidden cursor-pointer hover:border-primary/50 transition-colors hidden md:block">
+<img class="w-full h-full object-cover opacity-60 hover:opacity-100 transition-opacity" data-alt="Engine bay view of the 4.0L flat-six engine in a Porsche GT3, featuring carbon fiber shrouds and meticulous mechanical engineering details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGLk7JfCm6nOpRF69vgsQ0qkBWxD_KHLH9_APXTWQQeC3pqc2phJvz8qBTwwq9Ah2Ya9ir9kO9Wua_F-jX6bgFAHCgnfDllRhyH-29hXSV_tVsQ_09XIxPqtNhd7-WGAnOW4D-izZ92XNcaWvOCfI3K_FchSwPLs_dUsajVRvYwl-de7zv8OvlnfdtEMwm9fGkxzeB6zp_7DrxSAahQTQBJqkScTHR_p4D2n7_XbGd4L_q7AZpl3iijA"/>
+</div>
+<div class="relative aspect-square border border-white/10 overflow-hidden cursor-pointer hover:border-primary/50 transition-colors hidden md:block">
+<img class="w-full h-full object-cover opacity-40 blur-sm" data-alt="The Porsche crest badge on the front hood of a Shark Blue GT3, reflecting the minimalist studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbMj7hxqm3Q0sAT_AwyFNsTNrorRVV2NyqqMBsHIvNO1hMaMg4WRqMaOYsia3bcL7ZmEsmV5lHvY-fe2w4OBSKmtzV9atWS3nhWWnpuO8014N1ucuDkeaku0ACSJ5bIOQh63ReD-lmFGFNDDjaLXebLcyPojImYyeDjF6d_KZNKSiav27wprCzSfYs_NM3UPEwDUdgq8WQO8HhQhut9JNJet9rZnRsI7pxUQF30E6mNFYEDIC2-yDdTg"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="font-label-bold text-label-bold text-white">+18</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats Strip -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10 border border-white/10">
+<div class="bg-surface p-6 flex flex-col items-center text-center">
+<span class="text-on-surface-variant font-label-bold text-caption uppercase mb-2">Condition</span>
+<span class="font-headline-md text-headline-md text-white">NEW</span>
+</div>
+<div class="bg-surface p-6 flex flex-col items-center text-center">
+<span class="text-on-surface-variant font-label-bold text-caption uppercase mb-2">Mileage</span>
+<span class="font-headline-md text-headline-md text-white">12 MI</span>
+</div>
+<div class="bg-surface p-6 flex flex-col items-center text-center">
+<span class="text-on-surface-variant font-label-bold text-caption uppercase mb-2">Color</span>
+<span class="font-headline-md text-headline-md text-white">SHARK BLUE</span>
+</div>
+<div class="bg-surface p-6 flex flex-col items-center text-center">
+<span class="text-on-surface-variant font-label-bold text-caption uppercase mb-2">Drive</span>
+<span class="font-headline-md text-headline-md text-white">RWD</span>
+</div>
+</div>
+<!-- Description -->
+<div class="space-y-6">
+<h2 class="font-headline-lg text-headline-lg border-l-4 border-primary pl-6">ENGINEERING EXCELLENCE</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        The 2024 Porsche 911 GT3 isn't just a car; it's a testament to decades of motorsport heritage distilled into a road-legal masterpiece. Powered by a naturally aspirated 4.0-liter flat-six engine that screams to a 9,000 RPM redline, this GT3 delivers 502 horsepower of pure visceral emotion. Every vent, wing, and surface has been sculpted by the wind to provide maximum downforce for the most demanding circuits in the world.
+                    </p>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        Finished in the striking Shark Blue over a bespoke Race-Tex interior with Carmine Red accents, this specific model features the legendary 7-speed PDK transmission for lightning-fast shifts. It represents the pinnacle of performance, offering a direct connection between driver and machine that few vehicles can match.
+                    </p>
+</div>
+<!-- Features Grid -->
+<div class="space-y-8">
+<h3 class="font-headline-md text-headline-md uppercase tracking-tight">Standard Features</h3>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+<div class="flex items-center gap-3 p-4 bg-surface-container border border-white/5">
+<span class="material-symbols-outlined text-primary">bluetooth</span>
+<span class="font-label-bold text-label-bold">Bluetooth</span>
+</div>
+<div class="flex items-center gap-3 p-4 bg-surface-container border border-white/5">
+<span class="material-symbols-outlined text-primary">explore</span>
+<span class="font-label-bold text-label-bold">Navigation</span>
+</div>
+<div class="flex items-center gap-3 p-4 bg-surface-container border border-white/5">
+<span class="material-symbols-outlined text-primary">airline_seat_recline_extra</span>
+<span class="font-label-bold text-label-bold">Leather Seats</span>
+</div>
+<div class="flex items-center gap-3 p-4 bg-surface-container border border-white/5">
+<span class="material-symbols-outlined text-primary">wb_sunny</span>
+<span class="font-label-bold text-label-bold">Sunroof</span>
+</div>
+<div class="flex items-center gap-3 p-4 bg-surface-container border border-white/5">
+<span class="material-symbols-outlined text-primary">videocam</span>
+<span class="font-label-bold text-label-bold">Backup Camera</span>
+</div>
+<div class="flex items-center gap-3 p-4 bg-surface-container border border-white/5">
+<span class="material-symbols-outlined text-primary">sensors</span>
+<span class="font-label-bold text-label-bold">Parking Sensors</span>
+</div>
+<div class="flex items-center gap-3 p-4 bg-surface-container border border-white/5">
+<span class="material-symbols-outlined text-primary">smartphone</span>
+<span class="font-label-bold text-label-bold">Apple CarPlay</span>
+</div>
+<div class="flex items-center gap-3 p-4 bg-surface-container border border-white/5">
+<span class="material-symbols-outlined text-primary">android</span>
+<span class="font-label-bold text-label-bold">Android Auto</span>
+</div>
+<div class="flex items-center gap-3 p-4 bg-surface-container border border-white/5">
+<span class="material-symbols-outlined text-primary">speed</span>
+<span class="font-label-bold text-label-bold">Cruise Control</span>
+</div>
+</div>
+</div>
+<!-- Specs Table -->
+<div class="space-y-8">
+<h3 class="font-headline-md text-headline-md uppercase tracking-tight">Technical Specifications</h3>
+<div class="border-t border-white/10 divide-y divide-white/10">
+<div class="flex justify-between py-5">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase">Engine</span>
+<span class="font-body-lg text-body-lg">4.0L Flat-6</span>
+</div>
+<div class="flex justify-between py-5">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase">Transmission</span>
+<span class="font-body-lg text-body-lg">7-Speed PDK</span>
+</div>
+<div class="flex justify-between py-5">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase">Drivetrain</span>
+<span class="font-body-lg text-body-lg">RWD</span>
+</div>
+<div class="flex justify-between py-5">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase">Horsepower</span>
+<span class="font-body-lg text-body-lg">502 hp</span>
+</div>
+<div class="flex justify-between py-5">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase">0-60 MPH</span>
+<span class="font-body-lg text-body-lg">3.2s</span>
+</div>
+<div class="flex justify-between py-5">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase">VIN</span>
+<span class="font-body-lg text-body-lg font-mono">WP0AC2A9XPS28XXXX</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Sidebar Action Card -->
+<div class="lg:col-span-4 lg:sticky lg:top-28 h-fit space-y-6">
+<!-- Main Actions -->
+<div class="bg-surface-container p-8 border border-white/10 space-y-6">
+<div class="space-y-3">
+<button class="w-full bg-primary-container hover:bg-primary-container/90 transition-colors py-4 font-label-bold text-label-bold uppercase text-white scale-100 active:scale-[0.98]">
+                            Schedule Test Drive
+                        </button>
+<button class="w-full border border-white/20 hover:border-white transition-colors py-4 font-label-bold text-label-bold uppercase text-white">
+                            Request Quote
+                        </button>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 border border-white/10 hover:bg-surface-container-high py-3 text-sm font-label-bold transition-colors">
+<span class="material-symbols-outlined text-lg">mail</span>
+                            Contact
+                        </button>
+<button class="flex items-center justify-center gap-2 border border-white/10 hover:bg-surface-container-high py-3 text-sm font-label-bold transition-colors">
+<span class="material-symbols-outlined text-lg">chat</span>
+                            WhatsApp
+                        </button>
+</div>
+<hr class="border-white/10"/>
+<!-- Finance Calculator -->
+<div class="space-y-6">
+<h4 class="font-label-bold text-label-bold uppercase">Finance Estimator</h4>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-xs text-on-surface-variant font-label-bold uppercase">Down Payment</span>
+<span class="text-white font-label-bold" id="down-payment-val">$40,000</span>
+</div>
+<input class="w-full h-1 bg-surface-container-high rounded-full appearance-none cursor-pointer" max="180000" min="0" oninput="document.getElementById('down-payment-val').innerText = '$' + Number(this.value).toLocaleString()" step="5000" type="range" value="40000"/>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-xs text-on-surface-variant font-label-bold uppercase">Term (Months)</span>
+<span class="text-white font-label-bold" id="term-val">60</span>
+</div>
+<input class="w-full h-1 bg-surface-container-high rounded-full appearance-none cursor-pointer" max="84" min="24" oninput="document.getElementById('term-val').innerText = this.value" step="12" type="range" value="60"/>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 border border-white/5 text-center">
+<span class="text-xs text-on-surface-variant font-label-bold uppercase">Estimated Monthly Payment</span>
+<div class="text-primary font-headline-lg text-headline-lg mt-1">$2,845 / mo</div>
+<p class="text-[10px] text-on-surface-variant mt-2">*Based on 5.9% APR. Taxes not included.</p>
+</div>
+</div>
+</div>
+<!-- Dealer Info Small -->
+<div class="p-6 bg-surface-container-low border border-white/5 flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container-high rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+</div>
+<div>
+<p class="font-label-bold text-label-bold text-white">Performance Auto Elite</p>
+<p class="text-xs text-on-surface-variant">Los Angeles, CA • 4.9 ★</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Related Vehicles Carousel -->
+<section class="mt-section-gap-mobile lg:mt-section-gap-desktop">
+<div class="flex justify-between items-end mb-12">
+<h2 class="font-headline-lg text-headline-lg uppercase">You May Also Like</h2>
+<div class="flex gap-2">
+<button class="w-10 h-10 border border-white/20 flex items-center justify-center hover:border-primary transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 border border-white/20 flex items-center justify-center hover:border-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-grid-gutter">
+<!-- Card 1 -->
+<div class="group border border-white/10 bg-surface-container overflow-hidden">
+<div class="relative aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A dark gray Ferrari 296 GTB parked in a modern architectural driveway with warm ambient lighting reflecting off its curves. Low angle shot, luxury sports car aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcUkUs4WWuzjqgki-2j-6dCDpIdaZFbZyt9cfMPE9a9N36dk7n_sOdPIBJi7zbb9QmaMhQxETzj1TPAwwUDsUgmCrySoOhLMQhuL5lbbn4t609d3yx8V5e_AsW3AerNntQqoS-K_-PS3l5dEUWfL-KK7TomQ8YaJ5g350i27-blohxY6W61TYKalDe7sa7jVx1PxK3PcOU9jBJ-iXdpAFNUeQk6mRABEnh6RV9PolnuOMavbo8lrg7aA"/>
+<div class="absolute top-4 left-4 bg-primary-container px-3 py-1 font-label-bold text-[10px] uppercase text-white">New Arrival</div>
+</div>
+<div class="p-6 space-y-4">
+<div>
+<h3 class="font-headline-md text-headline-md">Ferrari 296 GTB</h3>
+<p class="text-on-surface-variant text-sm mt-1">2024 • Hybrid V6</p>
+</div>
+<div class="flex justify-between items-center border-t border-white/5 pt-4">
+<span class="font-headline-md text-headline-md text-primary">$322,986</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group border border-white/10 bg-surface-container overflow-hidden">
+<div class="relative aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A bright yellow Lamborghini Huracán STO in a high-speed motion shot on a race track at sunset. Dynamic motion blur on the background, vibrant and aggressive styling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8S6R32c1JW3feYbREl_VvBaQKuB4C_CfkgRuqZmtHoOJOnZl4wJqj4Oe3k22SZDFNxAMJV9tZcdgv_fAD07f6XYktM0n1ziaDnRtb0W6OVwjz3I1vsn4JlqqlCI1IqKVQJ66WIECZaSLQ48-8INYZlm4J4pD9FK6GQ3_3LJ0l0cumZXBZ08RYWTEfjcX_rTjze05fI50EaoG-RUAC0QbS7mGYao6whUkoBXXPI3UuHTSpVhrLU51Xpw"/>
+</div>
+<div class="p-6 space-y-4">
+<div>
+<h3 class="font-headline-md text-headline-md">Lamborghini Huracán STO</h3>
+<p class="text-on-surface-variant text-sm mt-1">2024 • V10 Performance</p>
+</div>
+<div class="flex justify-between items-center border-t border-white/5 pt-4">
+<span class="font-headline-md text-headline-md text-primary">$348,500</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group border border-white/10 bg-surface-container overflow-hidden">
+<div class="relative aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A metallic silver McLaren Artura in a futuristic neon-lit city environment at night. Reflections of purple and blue neon lights on the car's sleek carbon fiber body." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpKsIUwJL0iUklIRtjonoLUl7OU-KzpczCvfrkQipCqdEHXrJ-7jZSSbXsATjoDbgbMdcNhqajW90cI0BhzvMWumjCkiiWhUfWS5gs7Qs2UMpUPOha2QtPdPOfi6yihfqiAS4-3_5SW8ldQXTe-LB2LmlUb0NO-1gqQWONXINysc-Z7LG7bxKz8fQzo9Fmvp9k9BpmVzVWINRyoPHloJTnKeODZ73R6qPKMu8bwKihY_vksGmqbWi3dw"/>
+</div>
+<div class="p-6 space-y-4">
+<div>
+<h3 class="font-headline-md text-headline-md">McLaren Artura</h3>
+<p class="text-on-surface-variant text-sm mt-1">2024 • Twin-Turbo Hybrid</p>
+</div>
+<div class="flex justify-between items-center border-t border-white/5 pt-4">
+<span class="font-headline-md text-headline-md text-primary">$237,500</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-white/10 mt-section-gap-desktop">
+<div class="flex flex-col md:flex-row justify-between items-center px-grid-margin py-section-gap-mobile w-full max-w-container-max-width mx-auto gap-8">
+<div class="space-y-4 text-center md:text-left">
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface">PERFORMANCE AUTO</div>
+<p class="font-caption text-caption text-on-surface-variant max-w-xs">Precision engineered vehicles for the modern enthusiast. Global delivery and bespoke tuning available.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-x-8 gap-y-4">
+<a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary transition-colors uppercase tracking-wider" href="#">Privacy Policy</a>
+<a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary transition-colors uppercase tracking-wider" href="#">Terms of Service</a>
+<a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary transition-colors uppercase tracking-wider" href="#">Emissions Data</a>
+<a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary transition-colors uppercase tracking-wider" href="#">Global Contact</a>
+</div>
+<div class="font-label-bold text-label-bold text-on-surface-variant opacity-60">
+                © 2024 PERFORMANCE AUTO. PRECISION ENGINEERED.
+            </div>
+</div>
+</footer>
+<!-- Mobile Navigation Shell (Suppressed on large) -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-surface-container border-t border-white/10 px-6 py-4 flex justify-around items-center z-50">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">directions_car</span>
+<span class="text-[10px] font-label-bold uppercase">Models</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">search</span>
+<span class="text-[10px] font-label-bold uppercase">Explore</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">favorite</span>
+<span class="text-[10px] font-label-bold uppercase">Saved</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-[10px] font-label-bold uppercase">Account</span>
+</button>
+</div>
+<script>
+        // Simple Interaction logic
+        document.querySelectorAll('input[type=range]').forEach(slider => {
+            slider.addEventListener('input', () => {
+                // Haptic-like visual feedback or calculation trigger
+                // Since this is a UI prototype, we update the displays as seen in the HTML oninput attributes
+            });
+        });
+    </script>
+</body></html>
