@@ -10,6 +10,7 @@
   --bg-header: #ffffff;
   --text-header: #111827;
   --accent-glow: rgba(11, 15, 20, 0.03);
+  --primary-color: #d90429;
 }
 
 .dark {
@@ -22,11 +23,12 @@
   --bg-header: #121414;
   --text-header: #e2e2e2;
   --accent-glow: rgba(255, 255, 255, 0.05);
+  --primary-color: #ffb3af;
 }
 
 @theme {
-  --color-primary: #ffb3af;
-  --color-primary-container: #d90429;
+  --color-primary: var(--primary-color);
+  --color-primary-container: var(--primary-color);
   --color-on-primary: #68000e;
   --color-on-primary-container: #ffeae8;
   --color-secondary: #c8c6c5;
@@ -37,18 +39,20 @@
   --color-tertiary-container: #6d6c6c;
   --color-on-tertiary: #303030;
   --color-on-tertiary-container: #f1eeee;
-  --color-surface: #121414;
-  --color-surface-dim: #121414;
-  --color-surface-bright: #37393a;
-  --color-surface-container: #1e2020;
-  --color-surface-container-lowest: #0c0f0f;
-  --color-surface-container-low: #1a1c1c;
-  --color-surface-container-high: #282a2b;
-  --color-surface-container-highest: #333535;
-  --color-background: #121414;
-  --color-on-background: #e2e2e2;
-  --color-on-surface: #e2e2e2;
-  --color-on-surface-variant: #e7bcba;
+  
+  --color-surface: var(--bg-main);
+  --color-surface-dim: var(--bg-main);
+  --color-surface-bright: var(--bg-card);
+  --color-surface-container: var(--bg-card);
+  --color-surface-container-lowest: var(--bg-main);
+  --color-surface-container-low: var(--bg-card);
+  --color-surface-container-high: var(--bg-card-hover);
+  --color-surface-container-highest: var(--bg-card-hover);
+  
+  --color-background: var(--bg-main);
+  --color-on-background: var(--text-main);
+  --color-on-surface: var(--text-main);
+  --color-on-surface-variant: var(--text-muted);
   --color-outline: #ae8885;
   --color-outline-variant: #5d3f3d;
 
@@ -122,4 +126,47 @@ body {
 
 .fill-1 {
   font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24 !important;
+}
+
+/* Dynamic primary color overrides for hardcoded Tailwind classes */
+.text-\[\#ffb3af\] {
+  color: var(--primary-color) !important;
+}
+.border-\[\#ffb3af\] {
+  border-color: var(--primary-color) !important;
+}
+.hover\:border-\[\#ffb3af\]:hover {
+  border-color: var(--primary-color) !important;
+}
+.text-primary-container {
+  color: var(--primary-color) !important;
+}
+.bg-primary-container {
+  background-color: var(--primary-color) !important;
+}
+.hover\:bg-primary-container:hover {
+  background-color: var(--primary-color) !important;
+}
+.accent-primary-container {
+  accent-color: var(--primary-color) !important;
+}
+
+/* Dynamic border and background overrides for hardcoded white-opacity helper classes */
+.border-white\/10 {
+  border-color: var(--border-color) !important;
+}
+.border-white\/5 {
+  border-color: var(--border-color) !important;
+}
+.divide-white\/10 > :not([hidden]) ~ :not([hidden]) {
+  border-color: var(--border-color) !important;
+}
+.divide-white\/5 > :not([hidden]) ~ :not([hidden]) {
+  border-color: var(--border-color) !important;
+}
+.bg-white\/5 {
+  background-color: var(--accent-glow) !important;
+}
+.hover\:bg-white\/5:hover {
+  background-color: var(--accent-glow) !important;
 }
