@@ -127,7 +127,20 @@ const translations = {
     favoritesTitle: "My Favorites",
     favoritesEmpty: "Your favorites list is empty.",
     favoritesExplore: "Explore Inventory",
-    favoritesRemove: "Remove"
+    favoritesRemove: "Remove",
+    aboutTitle: "About Performance Auto",
+    aboutHeading: "Distinguished in the Automotive World",
+    aboutIntro: "PERFORMANCE AUTO carefully selects its vehicles to offer a clear, elegant, and reassuring buying experience.",
+    aboutVision: "With a luxurious vision, the showroom combines automotive passion with on-the-ground expertise and personalized support. Every car is presented transparently and benefits from a stylish and thoughtful presentation.",
+    servicesTitle: "Our Services",
+    serviceBuyTitle: "Buying",
+    serviceBuyDesc: "A distinguished collection of cars with complete support every step of the way.",
+    serviceSellTitle: "Selling",
+    serviceSellDesc: "Professional presentation and high-quality advertising for your vehicle.",
+    serviceTradeTitle: "Trade-in",
+    serviceTradeDesc: "A quick appraisal and practical solution to facilitate your car change.",
+    serviceConsultTitle: "Consultation",
+    serviceConsultDesc: "Listening, guidance, and expertise to help you make the right decision."
   },
   fr: {
     // Header
@@ -218,7 +231,20 @@ const translations = {
     favoritesTitle: "Mes Favoris",
     favoritesEmpty: "Votre liste de favoris est vide.",
     favoritesExplore: "Explorer l'Inventaire",
-    favoritesRemove: "Supprimer"
+    favoritesRemove: "Supprimer",
+    aboutTitle: "À Propos de Performance Auto",
+    aboutHeading: "Distingué dans le Monde Automobile",
+    aboutIntro: "PERFORMANCE AUTO sélectionne soigneusement ses véhicules pour offrir une expérience d'achat claire, élégante et rassurante.",
+    aboutVision: "Avec une vision luxueuse, le showroom allie la passion automobile à l'expertise de terrain et à un accompagnement personnalisé. Chaque voiture est présentée de manière transparente et bénéficie d'une présentation soignée et réfléchie.",
+    servicesTitle: "Nos Services",
+    serviceBuyTitle: "Achat",
+    serviceBuyDesc: "Une collection distinguée de voitures avec un accompagnement complet à chaque étape.",
+    serviceSellTitle: "Vente",
+    serviceSellDesc: "Présentation professionnelle et publicité de haute qualité pour votre véhicule.",
+    serviceTradeTitle: "Reprise",
+    serviceTradeDesc: "Une estimation rapide et une solution pratique pour faciliter votre changement de voiture.",
+    serviceConsultTitle: "Consultation",
+    serviceConsultDesc: "Écoute, conseils et expertise pour vous aider à prendre la bonne décision."
   },
   ar: {
     // Header
@@ -309,6 +335,19 @@ const translations = {
     favoritesTitle: "المفضلة الخاصة بي",
     favoritesEmpty: "قائمة المفضلة فارغة.",
     favoritesExplore: "تصفح المعرض",
-    favoritesRemove: "حذف"
+    favoritesRemove: "حذف",
+    aboutTitle: "حول بيرفورمانس أوتو",
+    aboutHeading: "متميزون في عالم السيارات",
+    aboutIntro: "تختار بيرفورمانس أوتو سياراتها بعناية فائقة لتقدم تجربة شراء واضحة، أنيقة، ومطمئنة.",
+    aboutVision: "من خلال رؤية فاخرة، يجمع المعرض بين شغف السيارات والخبرة الميدانية والدعم الشخصي. تُعرض كل سيارة بشفافية تامة وتستفيد من عرض أنيق ومدروس.",
+    servicesTitle: "خدماتنا",
+    serviceBuyTitle: "الشراء",
+    serviceBuyDesc: "مجموعة متميزة من السيارات مع دعم كامل ومستمر في كل خطوة.",
+    serviceSellTitle: "البيع",
+    serviceSellDesc: "عرض احترافي وإعلانات عالية الجودة لسيارتك.",
+    serviceTradeTitle: "الاستبدال",
+    serviceTradeDesc: "تقييم سريع وحل عملي لتسهيل تغيير سيارتك.",
+    serviceConsultTitle: "الاستشارات",
+    serviceConsultDesc: "الاستماع، التوجيه، والخبرة لمساعدتك على اتخاذ القرار الصحيح."
   }
 };

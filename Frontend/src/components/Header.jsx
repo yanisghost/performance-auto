@@ -118,7 +118,7 @@ export default function Header() {
     { name: t("home"), path: "/" },
     { name: t("inventory"), path: "/inventory" },
     { name: t("financing"), path: "#" },
-    { name: t("about"), path: "#" },
+    { name: t("about"), path: "/about" },
     { name: t("contact"), path: "#" },
   ];
 
