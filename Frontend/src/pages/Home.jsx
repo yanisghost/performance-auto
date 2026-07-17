@@ -80,7 +80,7 @@ export default function Home() {
         <div 
           className="absolute inset-0 bg-cover bg-center" 
           style={{ 
-            backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDxnxtna0DgpqBLSQ0bA08QIH8SvR3qhWnuEpYs2TLJ8zHmX4EQvARSyUpuG8TEb6AwTzFTdKeLZAfTuSiEqLsFeOykjw7OpDYSHXo_bMnr56REtboFfvlE-17oQyU7JSfV4i_kqzqZmsShpFpee7Ni8wVHXR6ek3-xjFfmpZdvGcEGnGOmDReE6gKzjEiAeoM61JMrZp5qKAncMezoeKxsN4CMfXEgEKKS-xCf7aaHspqOvc_Bh2SarQ')" 
+            backgroundImage: "url('/hero-image.jpg')" 
           }}
         ></div>
         <div className="absolute inset-0 luxury-overlay"></div>
