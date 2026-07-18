@@ -151,6 +151,7 @@ export default function Inventory() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedBrand, setSelectedBrand] = useState("all");
   const [sortBy, setSortBy] = useState("newest");
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   // Read search parameters from URL on load
   useEffect(() => {
@@ -269,6 +270,157 @@ export default function Inventory() {
     { value: "Hybrid", label: t("fuelHybrid") }
   ];
 
+  const renderFiltersContent = () => (
+    <>
+      <div className="relative border-b border-border-color pb-4">
+        <input 
+          type="text" 
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full bg-bg-card border border-border-color py-2.5 pl-3 pr-10 text-sm text-text-main placeholder:text-text-muted/40 outline-none rounded-sm"
+          placeholder={t("searchInventoryPlaceholder")}
+        />
+        <span className="material-symbols-outlined absolute right-3 top-3 text-sm text-text-muted/50">search</span>
+      </div>
+
+      {/* Category Filter dropdown */}
+      <div className="space-y-2 border-b border-border-color pb-4">
+        <h3 className="font-label-bold text-xs text-primary uppercase tracking-wider font-semibold">{t("categoryLabel")}</h3>
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          className="w-full bg-bg-card border border-border-color text-sm text-text-main py-2.5 px-3 rounded-sm outline-none cursor-pointer"
+        >
+          {categoriesList.map((cat) => (
+            <option key={cat.value} value={cat.value} className="bg-bg-card text-text-main">
+              {cat.value === "all" ? t("allCollections") : cat.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Brand Filter dropdown */}
+      <div className="space-y-2 border-b border-border-color pb-4">
+        <h3 className="font-label-bold text-xs text-primary uppercase tracking-wider font-semibold">{t("brandLabel")}</h3>
+        <select
+          value={selectedBrand}
+          onChange={(e) => setSelectedBrand(e.target.value)}
+          className="w-full bg-bg-card border border-border-color text-sm text-text-main py-2.5 px-3 rounded-sm outline-none cursor-pointer"
+        >
+          {brandsList.map((brand) => (
+            <option key={brand.value} value={brand.value} className="bg-bg-card text-text-main">
+              {brand.value === "all" ? t("allBrands") : brand.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Transmission Filter dropdown */}
+      <div className="space-y-2 border-b border-border-color pb-4">
+        <h3 className="font-label-bold text-xs text-primary uppercase tracking-wider font-semibold">{t("transmissionLabel") || "Transmission"}</h3>
+        <select
+          value={selectedTransmission}
+          onChange={(e) => setSelectedTransmission(e.target.value)}
+          className="w-full bg-bg-card border border-border-color text-sm text-text-main py-2.5 px-3 rounded-sm outline-none cursor-pointer"
+        >
+          {transmissionsList.map((tr) => (
+            <option key={tr.value} value={tr.value} className="bg-bg-card text-text-main">
+              {tr.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Fuel Type Filter dropdown */}
+      <div className="space-y-2 border-b border-border-color pb-4">
+        <h3 className="font-label-bold text-xs text-primary uppercase tracking-wider font-semibold">{t("fuelLabel") || "Fuel Type"}</h3>
+        <select
+          value={selectedFuelType}
+          onChange={(e) => setSelectedFuelType(e.target.value)}
+          className="w-full bg-bg-card border border-border-color text-sm text-text-main py-2.5 px-3 rounded-sm outline-none cursor-pointer"
+        >
+          {fuelsList.map((f) => (
+            <option key={f.value} value={f.value} className="bg-bg-card text-text-main">
+              {f.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Year Filter dropdown */}
+      <div className="space-y-2 border-b border-border-color pb-4">
+        <h3 className="font-label-bold text-xs text-primary uppercase tracking-wider font-semibold">{t("yearLabel") || "Year"}</h3>
+        <select
+          value={selectedYear}
+          onChange={(e) => setSelectedYear(e.target.value)}
+          className="w-full bg-bg-card border border-border-color text-sm text-text-main py-2.5 px-3 rounded-sm outline-none cursor-pointer"
+        >
+          {yearsList.map((yr) => (
+            <option key={yr.value} value={yr.value} className="bg-bg-card text-text-main">
+              {yr.value === "all" ? t("allYears") : yr.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Condition Checkboxes */}
+      <div className="space-y-3 border-b border-border-color pb-4">
+        <h3 className="font-label-bold text-xs text-primary uppercase tracking-wider font-semibold">{t("conditionLabel")}</h3>
+        <div className="space-y-2 mt-2">
+          <label className="flex items-center gap-3 cursor-pointer group">
+            <input 
+              type="checkbox" 
+              checked={selectedConditions.includes("New Arrival")}
+              onChange={() => handleConditionChange("New Arrival")}
+              className="w-4 h-4 bg-bg-card border-border-color rounded accent-primary-container"
+            />
+            <span className="text-sm text-text-main group-hover:text-primary transition-colors font-medium">{t("newArrivals")}</span>
+          </label>
+          <label className="flex items-center gap-3 cursor-pointer group">
+            <input 
+              type="checkbox" 
+              checked={selectedConditions.includes("Certified Pre-Owned")}
+              onChange={() => handleConditionChange("Certified Pre-Owned")}
+              className="w-4 h-4 bg-bg-card border-border-color rounded accent-primary-container"
+            />
+            <span className="text-sm text-text-main group-hover:text-primary transition-colors font-medium">{t("preOwned")}</span>
+          </label>
+        </div>
+      </div>
+
+      {/* Price Slider */}
+      <div className="space-y-3 border-b border-border-color pb-4">
+        <div className="flex justify-between items-center">
+          <h3 className="font-label-bold text-xs text-primary uppercase tracking-wider font-semibold">{t("priceLabel")}</h3>
+          <span className="text-xs font-semibold text-white bg-primary-container px-2 py-0.5 rounded-sm">
+            {formatPrice(maxPrice)}
+          </span>
+        </div>
+        <input 
+          type="range"
+          min={minPriceLimit}
+          max={maxPriceLimit}
+          step={maxPriceLimit > 10000 ? 5000 : 25}
+          value={maxPrice}
+          onChange={(e) => setMaxPrice(Number(e.target.value))}
+          className="w-full h-1 bg-bg-card rounded-lg appearance-none cursor-pointer accent-primary-container"
+        />
+        <div className="flex justify-between text-[10px] text-text-muted">
+          <span>{formatPrice(minPriceLimit)}</span>
+          <span>{formatPrice(maxPriceLimit)}</span>
+        </div>
+      </div>
+
+      {/* Reset Button */}
+      <button 
+        onClick={handleResetFilters}
+        className="w-full py-3 border border-border-color text-text-main font-label-bold text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all font-semibold rounded-sm cursor-pointer"
+      >
+        {t("resetBtn")}
+      </button>
+    </>
+  );
+
 
 
   return (
@@ -296,165 +448,30 @@ export default function Inventory() {
       {/* Main content grid */}
       <main className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row gap-8">
         
-        {/* Sidebar Filters */}
-        <aside className="w-full md:w-64 flex-shrink-0">
+        {/* Desktop Sidebar Filters */}
+        <aside className="hidden md:block w-64 flex-shrink-0">
           <div className="sticky top-28 space-y-6">
             <div>
-              <h2 className="font-headline-md text-[#ffb3af] text-xl font-bold uppercase mb-1">{t("filtersTitle")}</h2>
-              <p className="font-caption text-[10px] text-on-surface-variant uppercase tracking-wider">{t("precisionSearch")}</p>
+              <h2 className="font-headline-md text-primary text-xl font-bold uppercase mb-1">{t("filtersTitle")}</h2>
+              <p className="font-caption text-[10px] text-text-muted uppercase tracking-wider">{t("precisionSearch")}</p>
             </div>
-
-            <div className="relative border-b border-border-color pb-4">
-              <input 
-                type="text" 
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-bg-card border border-border-color py-2.5 pl-3 pr-10 text-sm text-text-main placeholder:text-text-muted/40 outline-none rounded-sm"
-                placeholder={t("searchInventoryPlaceholder")}
-              />
-              <span className="material-symbols-outlined absolute right-3 top-3 text-sm text-on-surface-variant">search</span>
-            </div>
-
-            {/* Category Filter dropdown */}
-            <div className="space-y-2 border-b border-border-color pb-4">
-              <h3 className="font-label-bold text-xs text-[#ffb3af] uppercase tracking-wider font-semibold">{t("categoryLabel")}</h3>
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full bg-bg-card border border-border-color text-sm text-text-main py-2.5 px-3 rounded-sm outline-none cursor-pointer"
-              >
-                {categoriesList.map((cat) => (
-                  <option key={cat.value} value={cat.value} className="bg-bg-card text-text-main">
-                    {cat.value === "all" ? t("allCollections") : cat.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Brand Filter dropdown */}
-            <div className="space-y-2 border-b border-border-color pb-4">
-              <h3 className="font-label-bold text-xs text-primary uppercase tracking-wider font-semibold">{t("brandLabel")}</h3>
-              <select
-                value={selectedBrand}
-                onChange={(e) => setSelectedBrand(e.target.value)}
-                className="w-full bg-bg-card border border-border-color text-sm text-text-main py-2.5 px-3 rounded-sm outline-none cursor-pointer"
-              >
-                {brandsList.map((brand) => (
-                  <option key={brand.value} value={brand.value} className="bg-bg-card text-text-main">
-                    {brand.value === "all" ? t("allBrands") : brand.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Transmission Filter dropdown */}
-            <div className="space-y-2 border-b border-border-color pb-4">
-              <h3 className="font-label-bold text-xs text-primary uppercase tracking-wider font-semibold">{t("transmissionLabel") || "Transmission"}</h3>
-              <select
-                value={selectedTransmission}
-                onChange={(e) => setSelectedTransmission(e.target.value)}
-                className="w-full bg-bg-card border border-border-color text-sm text-text-main py-2.5 px-3 rounded-sm outline-none cursor-pointer"
-              >
-                {transmissionsList.map((tr) => (
-                  <option key={tr.value} value={tr.value} className="bg-bg-card text-text-main">
-                    {tr.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Fuel Type Filter dropdown */}
-            <div className="space-y-2 border-b border-border-color pb-4">
-              <h3 className="font-label-bold text-xs text-primary uppercase tracking-wider font-semibold">{t("fuelLabel") || "Fuel Type"}</h3>
-              <select
-                value={selectedFuelType}
-                onChange={(e) => setSelectedFuelType(e.target.value)}
-                className="w-full bg-bg-card border border-border-color text-sm text-text-main py-2.5 px-3 rounded-sm outline-none cursor-pointer"
-              >
-                {fuelsList.map((f) => (
-                  <option key={f.value} value={f.value} className="bg-bg-card text-text-main">
-                    {f.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Year Filter dropdown */}
-            <div className="space-y-2 border-b border-border-color pb-4">
-              <h3 className="font-label-bold text-xs text-primary uppercase tracking-wider font-semibold">{t("yearLabel") || "Year"}</h3>
-              <select
-                value={selectedYear}
-                onChange={(e) => setSelectedYear(e.target.value)}
-                className="w-full bg-bg-card border border-border-color text-sm text-text-main py-2.5 px-3 rounded-sm outline-none cursor-pointer"
-              >
-                {yearsList.map((yr) => (
-                  <option key={yr.value} value={yr.value} className="bg-bg-card text-text-main">
-                    {yr.value === "all" ? t("allYears") : yr.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Condition Checkboxes */}
-            <div className="space-y-3 border-b border-border-color pb-4">
-              <h3 className="font-label-bold text-xs text-[#ffb3af] uppercase tracking-wider font-semibold">{t("conditionLabel")}</h3>
-              <div className="space-y-2 mt-2">
-                <label className="flex items-center gap-3 cursor-pointer group">
-                  <input 
-                    type="checkbox" 
-                    checked={selectedConditions.includes("New Arrival")}
-                    onChange={() => handleConditionChange("New Arrival")}
-                    className="w-4 h-4 bg-bg-card border-border-color rounded accent-primary-container"
-                  />
-                  <span className="text-sm text-text-main group-hover:text-[#ffb3af] transition-colors font-medium">{t("newArrivals")}</span>
-                </label>
-                <label className="flex items-center gap-3 cursor-pointer group">
-                  <input 
-                    type="checkbox" 
-                    checked={selectedConditions.includes("Certified Pre-Owned")}
-                    onChange={() => handleConditionChange("Certified Pre-Owned")}
-                    className="w-4 h-4 bg-bg-card border-border-color rounded accent-primary-container"
-                  />
-                  <span className="text-sm text-text-main group-hover:text-[#ffb3af] transition-colors font-medium">{t("preOwned")}</span>
-                </label>
-              </div>
-            </div>
-
-            {/* Price Slider */}
-            <div className="space-y-3 border-b border-border-color pb-4">
-              <div className="flex justify-between items-center">
-                <h3 className="font-label-bold text-xs text-primary uppercase tracking-wider font-semibold">{t("priceLabel")}</h3>
-                <span className="text-xs font-semibold text-white bg-primary-container px-2 py-0.5 rounded-sm">
-                  {formatPrice(maxPrice)}
-                </span>
-              </div>
-              <input 
-                type="range"
-                min={minPriceLimit}
-                max={maxPriceLimit}
-                step={maxPriceLimit > 10000 ? 5000 : 25}
-                value={maxPrice}
-                onChange={(e) => setMaxPrice(Number(e.target.value))}
-                className="w-full h-1 bg-bg-card rounded-lg appearance-none cursor-pointer accent-primary-container"
-              />
-              <div className="flex justify-between text-[10px] text-text-muted">
-                <span>{formatPrice(minPriceLimit)}</span>
-                <span>{formatPrice(maxPriceLimit)}</span>
-              </div>
-            </div>
-
-            {/* Reset Button */}
-            <button 
-              onClick={handleResetFilters}
-              className="w-full py-3 border border-border-color text-text-main font-label-bold text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all font-semibold rounded-sm cursor-pointer"
-            >
-              {t("resetBtn")}
-            </button>
+            {renderFiltersContent()}
           </div>
         </aside>
 
         {/* Results Grid */}
         <section className="flex-grow">
+          
+          {/* Mobile Filter Button */}
+          <div className="md:hidden flex gap-4 mb-6">
+            <button
+              onClick={() => setMobileFiltersOpen(true)}
+              className="flex-grow flex items-center justify-center gap-2 py-3 bg-[#d90429] hover:bg-[#b50321] text-white font-label-bold text-xs uppercase tracking-widest transition-all font-semibold rounded-sm cursor-pointer shadow-md"
+            >
+              <span className="material-symbols-outlined text-sm">tune</span>
+              {t("filtersTitle") || "Filters"}
+            </button>
+          </div>
           {/* Sorting / Header */}
           <div className="flex flex-col sm:flex-row justify-between items-center mb-8 pb-4 border-b border-border-color gap-4">
             <span className="text-sm text-text-muted">
@@ -605,6 +622,39 @@ export default function Inventory() {
         </section>
 
       </main>
+
+      {/* Mobile Filters Drawer Overlay */}
+      {mobileFiltersOpen && (
+        <div className="fixed inset-0 z-50 flex md:hidden">
+          {/* Backdrop */}
+          <div 
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" 
+            onClick={() => setMobileFiltersOpen(false)}
+          />
+          
+          {/* Drawer Panel */}
+          <div className="relative flex flex-col w-full max-w-xs bg-bg-main border-r border-border-color h-full shadow-2xl overflow-y-auto p-6 animate-slideInLeft text-text-main">
+            {/* Header */}
+            <div className="flex justify-between items-center pb-4 border-b border-border-color mb-6">
+              <div>
+                <h2 className="font-headline-md text-primary text-xl font-bold uppercase">{t("filtersTitle")}</h2>
+                <p className="font-caption text-[10px] text-text-muted uppercase tracking-wider">{t("precisionSearch")}</p>
+              </div>
+              <button 
+                onClick={() => setMobileFiltersOpen(false)}
+                className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-bg-card-hover text-text-main border border-border-color cursor-pointer"
+              >
+                <span className="material-symbols-outlined text-lg">close</span>
+              </button>
+            </div>
+            
+            {/* Filters Content */}
+            <div className="space-y-6">
+              {renderFiltersContent()}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
