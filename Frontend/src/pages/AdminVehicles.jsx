@@ -35,6 +35,19 @@ export default function AdminVehicles() {
   const [category, setCategory] = useState("");
   const [stock, setStock] = useState(1);
   const [description, setDescription] = useState("");
+  const [selectedFeatures, setSelectedFeatures] = useState([]);
+
+  const featuresListOptions = [
+    { name: "Bluetooth", icon: "bluetooth" },
+    { name: "Navigation", icon: "explore" },
+    { name: "Leather Seats", icon: "airline_seat_recline_extra" },
+    { name: "Sunroof", icon: "wb_sunny" },
+    { name: "Backup Camera", icon: "videocam" },
+    { name: "Parking Sensors", icon: "sensors" },
+    { name: "Apple CarPlay", icon: "smartphone" },
+    { name: "Android Auto", icon: "android" },
+    { name: "Cruise Control", icon: "speed" }
+  ];
 
   // File Upload States
   const [coverFile, setCoverFile] = useState(null);
@@ -119,6 +132,7 @@ export default function AdminVehicles() {
     }
     setStock(1);
     setDescription("");
+    setSelectedFeatures([]);
 
     // Files
     setCoverFile(null);
@@ -164,6 +178,7 @@ export default function AdminVehicles() {
     setCategory(car.category?._id || car.category || "");
     setStock(car.stock || 1);
     setDescription(car.description || "");
+    setSelectedFeatures(car.features || []);
 
     // Existing media
     setCurrentCoverUrl(car.imageCover ? getMediaUrl(car.imageCover) : "");
@@ -232,6 +247,7 @@ export default function AdminVehicles() {
     formData.append("availability", availability);
     formData.append("price", price);
     formData.append("costPrice", costPrice);
+    formData.append("features", JSON.stringify(selectedFeatures));
 
     // Validation: check if discountPrice is valid
     if (discountPrice !== "" && discountPrice !== null && discountPrice !== undefined) {
@@ -842,6 +858,38 @@ export default function AdminVehicles() {
               rows="5"
               className="w-full bg-[#282a2b] border border-white/10 py-3.5 px-4 text-xs text-on-surface outline-none focus:border-[#ffb3af]/50 rounded-sm resize-none transition-all leading-relaxed"
             ></textarea>
+          </div>
+
+          {/* Features Checkbox Section */}
+          <div className="border-t border-white/10 pt-6">
+            <label className="block text-[10px] text-on-surface-variant font-label-bold uppercase tracking-wider font-semibold mb-3">
+              Standard Features (Select all that apply)
+            </label>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-4 bg-[#282a2b] border border-white/10 rounded-sm">
+              {featuresListOptions.map((feat) => {
+                const isChecked = selectedFeatures.includes(feat.name);
+                return (
+                  <label key={feat.name} className="flex items-center gap-3 cursor-pointer group select-none">
+                    <input
+                      type="checkbox"
+                      checked={isChecked}
+                      onChange={() => {
+                        if (isChecked) {
+                          setSelectedFeatures(selectedFeatures.filter(f => f !== feat.name));
+                        } else {
+                          setSelectedFeatures([...selectedFeatures, feat.name]);
+                        }
+                      }}
+                      className="w-4 h-4 bg-bg-card border-white/10 rounded accent-[#ffb3af] cursor-pointer"
+                    />
+                    <div className="flex items-center gap-2 text-xs text-on-surface group-hover:text-[#ffb3af] transition-colors">
+                      <span className="material-symbols-outlined text-sm">{feat.icon}</span>
+                      <span>{feat.name}</span>
+                    </div>
+                  </label>
+                );
+              })}
+            </div>
           </div>
 
           {/* MEDIA UPLOADS PANEL */}

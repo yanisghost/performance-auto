@@ -155,6 +155,17 @@ exports.resizeProductImages = catchAsync(async (req, res, next) => {
     }
   }
 
+  // Parse features JSON string from multipart FormData if present
+  if (req.body.features) {
+    try {
+      req.body.features = typeof req.body.features === 'string'
+        ? JSON.parse(req.body.features)
+        : req.body.features;
+    } catch (e) {
+      console.error('Error parsing features in body:', e.message);
+    }
+  }
+
   next();
 });
 

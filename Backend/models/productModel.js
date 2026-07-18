@@ -150,6 +150,10 @@ const productSchema = new mongoose.Schema(
       enum: ['Disponible', 'Vendu', 'Réservé'],
     },
     video: String,
+    features: {
+      type: [String],
+      default: [],
+    },
   },
   {
     toJSON: { virtuals: true },

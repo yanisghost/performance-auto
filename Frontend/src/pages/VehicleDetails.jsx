@@ -237,6 +237,16 @@ export default function VehicleDetails() {
     { name: "Cruise Control", icon: "speed" }
   ];
 
+  const displayFeatures = (car.features && car.features.length > 0)
+    ? car.features.map(fName => {
+        const found = standardFeatures.find(sf => sf.name.toLowerCase() === fName.toLowerCase());
+        return {
+          name: fName,
+          icon: found ? found.icon : "check_circle"
+        };
+      })
+    : standardFeatures;
+
   if (loading) {
     return (
       <div className="bg-bg-main text-text-main min-h-screen flex flex-col items-center justify-center py-20 px-6">
@@ -454,7 +464,7 @@ export default function VehicleDetails() {
             <div className="space-y-6">
               <h3 className="font-headline-md text-lg font-bold uppercase tracking-wide">Standard Features</h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {standardFeatures.map((feat, i) => (
+                {displayFeatures.map((feat, i) => (
                   <div key={i} className="flex items-center gap-3 p-4 bg-bg-card border border-border-color rounded-sm">
                     <span className="material-symbols-outlined text-primary-container">{feat.icon}</span>
                     <span className="font-label-bold text-xs font-semibold">{feat.name}</span>
