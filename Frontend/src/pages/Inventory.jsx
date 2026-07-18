@@ -180,9 +180,17 @@ export default function Inventory() {
       const matchesSearch = car.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                             car.description.toLowerCase().includes(searchQuery.toLowerCase());
 
-      // 2. Condition (badge)
+      // 2. Condition (badge / condition)
       const matchesCondition = selectedConditions.length === 0 || 
-                               selectedConditions.includes(car.badge);
+                               selectedConditions.some(cond => {
+                                 if (cond === "New Arrival") {
+                                   return car.badge === "New Arrival" || car.condition === "Neuf";
+                                 }
+                                 if (cond === "Certified Pre-Owned") {
+                                   return car.badge === "Certified Pre-Owned" || car.condition === "Occasion" || car.condition === "Controlé";
+                                 }
+                                 return false;
+                               });
 
       // 3. Price
       const matchesPrice = car.price <= maxPrice;
