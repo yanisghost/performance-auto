@@ -123,11 +123,11 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-bg-header border-b border-border-color transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
         {/* Logo */}
         <Link 
           to="/" 
-          className="font-display-lg text-2xl md:text-3xl uppercase tracking-tighter text-primary-container font-extrabold"
+          className="font-display-lg text-lg sm:text-2xl md:text-3xl uppercase tracking-tighter text-primary-container font-extrabold select-none truncate"
         >
           Performance Auto
         </Link>
@@ -162,14 +162,14 @@ export default function Header() {
         </nav>
 
         {/* Icons / Controls */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-1.5 sm:gap-3">
           {/* Language Selector Dropdown */}
           <div className="relative">
             <button
               onClick={() => setLangMenuOpen(!langMenuOpen)}
-              className="flex items-center justify-center w-9 h-9 rounded-full hover:bg-bg-card-hover text-text-main transition-colors cursor-pointer select-none"
+              className="flex items-center justify-center w-8 h-8 sm:w-9 h-9 rounded-full hover:bg-bg-card-hover text-text-main transition-colors cursor-pointer select-none"
             >
-              <span className="material-symbols-outlined text-xl text-primary-container">
+              <span className="material-symbols-outlined text-lg sm:text-xl text-primary-container">
                 language
               </span>
             </button>
@@ -211,14 +211,14 @@ export default function Header() {
           {/* Favorites Heart Icon */}
           <button
             onClick={() => setFavoritesOpen(true)}
-            className="relative flex items-center justify-center w-9 h-9 rounded-full hover:bg-bg-card-hover text-text-main transition-colors cursor-pointer select-none mr-1"
+            className="relative flex items-center justify-center w-8 h-8 sm:w-9 h-9 rounded-full hover:bg-bg-card-hover text-text-main transition-colors cursor-pointer select-none mr-0.5"
             aria-label="Favorites list"
           >
-            <span className="material-symbols-outlined text-xl text-primary-container">
+            <span className="material-symbols-outlined text-lg sm:text-xl text-primary-container">
               favorite
             </span>
             {favorites.length > 0 && (
-              <span className="absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#d90429] text-[9px] font-bold text-white shadow-md">
+              <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#d90429] text-[8px] font-bold text-white shadow-md">
                 {favorites.length}
               </span>
             )}
@@ -227,26 +227,35 @@ export default function Header() {
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
-            className="flex items-center justify-center w-9 h-9 rounded-full hover:bg-white/5 text-primary-container transition-colors cursor-pointer select-none mr-1"
+            className="flex items-center justify-center w-8 h-8 sm:w-9 h-9 rounded-full hover:bg-white/5 text-primary-container transition-colors cursor-pointer select-none mr-0.5"
             aria-label="Toggle theme"
           >
-            <span className="material-symbols-outlined text-xl">
+            <span className="material-symbols-outlined text-lg sm:text-xl">
               {theme === "dark" ? "light_mode" : "dark_mode"}
             </span>
           </button>
 
-          <span 
-            className="material-symbols-outlined text-primary-container cursor-pointer hover:scale-105 transition-transform"
+          {/* Search Trigger */}
+          <button
             onClick={toggleSearch}
+            className="flex items-center justify-center w-8 h-8 sm:w-9 h-9 rounded-full hover:bg-bg-card-hover text-primary-container transition-colors cursor-pointer select-none"
+            aria-label="Toggle search"
           >
-            {searchOpen ? "close" : "search"}
-          </span>
-          <span 
-            className="material-symbols-outlined text-primary-container cursor-pointer md:hidden"
+            <span className="material-symbols-outlined text-lg sm:text-xl">
+              {searchOpen ? "close" : "search"}
+            </span>
+          </button>
+
+          {/* Mobile Hamburger Trigger */}
+          <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="flex items-center justify-center w-8 h-8 sm:w-9 h-9 rounded-full hover:bg-bg-card-hover text-primary-container transition-colors cursor-pointer select-none md:hidden"
+            aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? "close" : "menu"}
-          </span>
+            <span className="material-symbols-outlined text-lg sm:text-xl">
+              {mobileMenuOpen ? "close" : "menu"}
+            </span>
+          </button>
         </div>
       </div>
 
