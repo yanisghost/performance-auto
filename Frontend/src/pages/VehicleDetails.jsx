@@ -307,7 +307,7 @@ export default function VehicleDetails() {
               <div className="font-display-lg text-3xl md:text-4xl text-primary-container font-extrabold flex flex-wrap items-center gap-x-3 justify-end">
                 {car.finalPrice < car.price ? (
                   <>
-                    <span className="line-through text-white/40 text-lg font-normal font-sans">
+                    <span className="line-through text-text-muted/60 text-lg font-normal font-sans">
                       {formatPrice(car.price)}
                     </span>
                     <span>{formatPrice(car.finalPrice)}</span>
@@ -659,7 +659,7 @@ export default function VehicleDetails() {
                     <p className="text-[#ffb3af] font-headline-md text-sm font-bold mt-2 flex flex-wrap items-center gap-x-2">
                       {related.finalPrice < related.price ? (
                         <>
-                          <span className="line-through text-white/40 text-xs font-normal font-sans">
+                          <span className="line-through text-text-muted/60 text-xs font-normal font-sans">
                             {formatPrice(related.price)}
                           </span>
                           <span>{formatPrice(related.finalPrice)}</span>

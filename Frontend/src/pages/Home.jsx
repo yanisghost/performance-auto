@@ -195,7 +195,7 @@ export default function Home() {
                         <div className="text-[#ffb3af] font-headline-md text-lg font-bold flex flex-wrap items-center justify-end gap-x-2">
                           {car.finalPrice < car.price ? (
                             <>
-                              <span className="line-through text-white/40 text-xs font-normal font-sans">
+                              <span className="line-through text-text-muted/60 text-xs font-normal font-sans">
                                 {formatPrice(car.price)}
                               </span>
                               <span>{formatPrice(car.finalPrice)}</span>
