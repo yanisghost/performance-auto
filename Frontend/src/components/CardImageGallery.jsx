@@ -87,7 +87,7 @@ export default function CardImageGallery({ car, isFavorited, toggleFavorite, asp
       </button>
 
       {/* Status Badge overlay */}
-      {(car.availability === 'Vendu' || car.availability === 'Réservé' || car.badge || car.condition) && (
+      {(car.availability === 'Vendu' || car.availability === 'Réservé' || car.badge === 'New Arrival' || car.condition === 'Neuf') && (
         <div className={`absolute top-4 left-4 z-20 text-white px-3 py-1 font-label-bold text-[10px] uppercase font-bold tracking-wider rounded-sm shadow-md ${
           car.availability === 'Vendu'
             ? 'bg-[#B50321]'
@@ -99,7 +99,7 @@ export default function CardImageGallery({ car, isFavorited, toggleFavorite, asp
             ? t("statusSold") 
             : car.availability === 'Réservé' 
               ? t("statusReserved") 
-              : (car.badge || (car.condition === 'Neuf' ? t("newArrivals") : (car.condition === 'Occasion' ? t("preOwned") : car.condition)))}
+              : t("newArrivals")}
         </div>
       )}
     </div>
