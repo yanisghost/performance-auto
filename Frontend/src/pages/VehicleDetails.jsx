@@ -237,7 +237,7 @@ export default function VehicleDetails() {
     { name: "Cruise Control", icon: "speed" }
   ];
 
-  const displayFeatures = (car.features && car.features.length > 0)
+  const displayFeatures = (car && car.features && car.features.length > 0)
     ? car.features.map(fName => {
         const found = standardFeatures.find(sf => sf.name.toLowerCase() === fName.toLowerCase());
         return {
