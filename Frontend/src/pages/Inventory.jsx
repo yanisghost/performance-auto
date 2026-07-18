@@ -462,33 +462,38 @@ export default function Inventory() {
         {/* Results Grid */}
         <section className="flex-grow">
           
-          {/* Mobile Filter Button */}
-          <div className="md:hidden flex gap-4 mb-6">
-            <button
-              onClick={() => setMobileFiltersOpen(true)}
-              className="flex-grow flex items-center justify-center gap-2 py-3 bg-[#d90429] hover:bg-[#b50321] text-white font-label-bold text-xs uppercase tracking-widest transition-all font-semibold rounded-sm cursor-pointer shadow-md"
-            >
-              <span className="material-symbols-outlined text-sm">tune</span>
-              {t("filtersTitle") || "Filters"}
-            </button>
-          </div>
-          {/* Sorting / Header */}
-          <div className="flex flex-col sm:flex-row justify-between items-center mb-8 pb-4 border-b border-border-color gap-4">
-            <span className="text-sm text-text-muted">
+          {/* Sorting & Filters Header Row */}
+          <div className="flex flex-row justify-between items-center mb-8 pb-4 border-b border-border-color gap-3 flex-wrap">
+            <span className="text-sm text-text-muted hidden sm:inline">
               {t("showingResults").replace("{count}", filteredCars.length).replace("{total}", cars.length)}
             </span>
-            <div className="flex items-center gap-3">
-              <span className="font-label-bold text-xs uppercase text-text-muted tracking-wider font-semibold">{t("sorting")}:</span>
-              <select 
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="bg-bg-card border border-border-color text-xs text-text-main font-label-bold uppercase py-2 pl-3 pr-8 rounded-sm focus:ring-1 focus:ring-primary-container cursor-pointer"
+            <span className="text-xs text-text-muted sm:hidden font-medium">
+              {filteredCars.length} / {cars.length} {t("inventoryTitle") || "Cars"}
+            </span>
+
+            <div className="flex items-center gap-3 ml-auto">
+              {/* Mobile Filters Trigger */}
+              <button
+                onClick={() => setMobileFiltersOpen(true)}
+                className="md:hidden flex items-center gap-2 py-2.5 px-4 bg-[#d90429] hover:bg-[#b50321] text-white font-label-bold text-xs uppercase tracking-wider font-semibold rounded-sm cursor-pointer shadow-sm"
               >
-                <option value="newest">{t("sortingNewest")}</option>
-                <option value="price-asc">{t("sortingPriceAsc")}</option>
-                <option value="price-desc">{t("sortingPriceDesc")}</option>
-                <option value="name">{t("sortingName")}</option>
-              </select>
+                <span className="material-symbols-outlined text-sm">tune</span>
+                {t("filtersTitle") || "Filters"}
+              </button>
+
+              <div className="flex items-center gap-2">
+                <span className="hidden sm:inline font-label-bold text-xs uppercase text-text-muted tracking-wider font-semibold">{t("sorting")}:</span>
+                <select 
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="bg-bg-card border border-border-color text-xs text-text-main font-label-bold uppercase py-2 pl-3 pr-8 rounded-sm focus:ring-1 focus:ring-primary-container cursor-pointer"
+                >
+                  <option value="newest">{t("sortingNewest")}</option>
+                  <option value="price-asc">{t("sortingPriceAsc")}</option>
+                  <option value="price-desc">{t("sortingPriceDesc")}</option>
+                  <option value="name">{t("sortingName")}</option>
+                </select>
+              </div>
             </div>
           </div>
 
