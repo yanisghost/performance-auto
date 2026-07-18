@@ -113,19 +113,19 @@ export default function Home() {
       <section className="py-16 bg-bg-card border-b border-border-color transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>
-            <div className="font-display-lg text-[#ffb3af] text-4xl md:text-5xl mb-2 font-bold">5,000+</div>
+            <div className="font-display-lg text-[#ffb3af] text-4xl md:text-5xl mb-2 font-bold">+150</div>
             <div className="font-label-bold text-xs uppercase tracking-wider text-on-surface-variant font-semibold">{t("statsSold")}</div>
           </div>
           <div>
-            <div className="font-display-lg text-[#ffb3af] text-4xl md:text-5xl mb-2 font-bold">4,800+</div>
+            <div className="font-display-lg text-[#ffb3af] text-4xl md:text-5xl mb-2 font-bold">+150</div>
             <div className="font-label-bold text-xs uppercase tracking-wider text-on-surface-variant font-semibold">{t("statsCustomers")}</div>
           </div>
           <div>
-            <div className="font-display-lg text-[#ffb3af] text-4xl md:text-5xl mb-2 font-bold">15+</div>
+            <div className="font-display-lg text-[#ffb3af] text-4xl md:text-5xl mb-2 font-bold">+5</div>
             <div className="font-label-bold text-xs uppercase tracking-wider text-on-surface-variant font-semibold">{t("statsExperience")}</div>
           </div>
           <div>
-            <div className="font-display-lg text-[#ffb3af] text-4xl md:text-5xl mb-2 font-bold">300+</div>
+            <div className="font-display-lg text-[#ffb3af] text-4xl md:text-5xl mb-2 font-bold">+20</div>
             <div className="font-label-bold text-xs uppercase tracking-wider text-on-surface-variant font-semibold">{t("statsAvailable")}</div>
           </div>
         </div>
